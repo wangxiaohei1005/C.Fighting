@@ -140,3 +140,54 @@
 //	return 0;
 //}
 
+//逗号表达式
+//int main()
+//{
+//	int a = 1;
+//	int b = 2;
+//	int c = (a > b, a = b + 10, a, b = a + 1);
+//	printf("%d\n", c);
+//	return 0;//逗号表达式从左到右依次计算，最终结果为最后一个表达式
+//}
+
+//下标引用、函数调用、结构引用操作符
+//int main()
+//{
+//	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//	int *p = arr;
+//	printf("%d\n",arr[4]);//下标引用
+//	printf("%d\n", 4[arr]);//编译器转化为*(arr+4)
+//	printf("%d\n", *(p + 4));//*(arr + 4)
+//	printf("%d\n", *(4 + p));
+//	return 0;
+//}
+
+//int Add(int a, int b)//()函数调用符
+//{
+//	return a + b;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int ret = Add(a, b);
+//	return 0;
+//}
+
+//struct S
+//{
+//	char name[20];
+//	int age;
+//};
+//int main()
+//{
+//	struct S s = { "zhangsan", 20 };
+//	struct S * ps = &s;
+//	printf("%s\n", s.name);
+//	printf("%d\n", s.age);
+//	printf("%s\n", (*ps).name);
+//	printf("%d\n", (*ps).age);
+//	printf("%s\n", ps->name);
+//	printf("%d\n", ps->age);
+//	return 0;
+//}
