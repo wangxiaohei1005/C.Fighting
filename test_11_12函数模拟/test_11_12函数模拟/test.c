@@ -174,7 +174,7 @@ struct Student
 	int tall;
 };
 
-void* Mymemcpy(void* dst, const void* src, size_t num)
+void* Mymemmcpy(void* dst, const void* src, size_t num)
 {
 	assert(dst && src);
 	char* str_dst = (char*)dst;
@@ -191,11 +191,53 @@ int main()
 {
 	int a1[10] = { 1, 2, 3, 4, 5 };
 	int a2[10];
-	Mymemcpy(a2, a1, 10 * sizeof(int));
+	Mymemmcpy(a2, a1, 10 * sizeof(int));
 
 	struct Student s1 = { "peter", 18 };
 
 	struct Student s2;
-	Mymemcpy(&s2, &s1, sizeof(struct Student));
+	Mymemmcpy(&s2, &s1, sizeof(struct Student));
+	return 0;
+}
+
+#include <stdio.h>
+#include <assert.h>
+
+//模拟实现函数 memmove
+void* MyMemmove(void* dst, const void* src, size_t num)
+{
+	assert(src && dst);
+
+	char* str_dst = (char*)dst;
+	char* str_src = (char*)src;
+	if (str_src < str_dst && dst < str_src + num) //分为两种偏移方式，当目标处于左边，且存在覆盖   则从右边开始偏移
+	{
+		for (int i = num - 1; i >= 0; --i)
+		{
+			str_dst[i] = str_src[i];
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < num; ++i)
+		{
+			str_dst[i] = str_src[i];
+		}
+	}
+
+	return dst;
+}
+
+int main()
+{
+	int a3[10] = { 1, 2, 3, 4, 5 };
+	int a4[20];
+	MyMemmove(a4, a3, 10 * sizeof(int));
+	for (size_t i = 0; i < 10; ++i)
+	{
+		printf("%d ", a4[i]);
+	}
+	printf("\n");
+
 	return 0;
 }
