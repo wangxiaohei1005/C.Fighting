@@ -3,6 +3,24 @@
 #include <stdio.h>
 #include <assert.h>
 
+enum day//枚举变量名
+{
+	MON,
+	TUES,
+	WED,
+	THUR,
+	FRI,
+	SAT,
+	SUN,
+};
+enum student
+{
+	NAME,
+	TALL,
+	WEIGHT,
+	NUMBER,
+};
+
 //结构体声明方式
 //struct Student
 //{
@@ -82,3 +100,70 @@
 //	return 0;
 //}
 
+struct Student
+{
+	char name;
+	int tall;
+	char number;
+
+	int weight;
+
+}s;//结构体枚举课替换对case语句的替换，从而明显提升代码的可读性
+//例如通讯录具体应用：
+enum OPTION
+{
+	EXIT,
+	ADD,
+	DEL,
+	SEARCH,
+	MOD,
+	SHOW,
+	SORT,
+	SAVE,
+	LOAD,
+};
+
+/*void testContact()
+{
+	int option;
+	Contact ct;
+	InitContact(&ct);
+	do
+	{
+		menu();
+		scanf("%d", &option);
+		switch (option)//通过枚举变量的可读性，联系所具体创建的函数
+		{
+		case EXIT:
+			printf("您好，系统推出成功！！！\n");
+			break;
+		case ADD:
+			AddContact(&ct);
+			break;
+		case DEL:
+			DelContact(&ct);
+			break;
+		case SEARCH:
+			SearchContact(&ct);
+			break;
+		case MOD:
+			ModifyContact(&ct);
+			break;
+		case SHOW:
+			ShowContact(&ct);
+			break;
+		case SORT:
+			SortContact(&ct);
+			break;
+		case LOAD:
+			LoadContact(&ct);
+			break;
+		case SAVE:
+			SaveContact(&ct);
+			break;
+		default:
+			printf("请注意，输入的选项有误！！！请重新输入！！！\n");
+		}
+	} while (option);
+
+}*/
