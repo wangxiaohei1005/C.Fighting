@@ -187,7 +187,7 @@ void* Mymemmcpy(void* dst, const void* src, size_t num)
 	return dst;
 }
 
-int main()
+/*int main()
 {
 	int a1[10] = { 1, 2, 3, 4, 5 };
 	int a2[10];
@@ -198,13 +198,13 @@ int main()
 	struct Student s2;
 	Mymemmcpy(&s2, &s1, sizeof(struct Student));
 	return 0;
-}
+}*/
 
 #include <stdio.h>
 #include <assert.h>
 
 //模拟实现函数 memmove
-void* MyMemmove(void* dst, const void* src, size_t num)
+/*void* MyMemmove(void* dst, const void* src, size_t num)
 {
 	assert(src && dst);
 
@@ -226,9 +226,9 @@ void* MyMemmove(void* dst, const void* src, size_t num)
 	}
 
 	return dst;
-}
+}*/
 
-int main()
+/*int main()
 {
 	int a3[10] = { 1, 2, 3, 4, 5 };
 	int a4[20];
@@ -239,5 +239,110 @@ int main()
 	}
 	printf("\n");
 
+	return 0;
+}*/
+
+#include <stdlib.h>
+
+int compare(const void * dst, const void *src)
+{
+	return (*(int *)dst - *(int *)src);
+}
+
+/*int main()
+{
+	//int arr[] = { 1, 22, 5, 4, 7, 6, 3, 2, 12 };
+	char *arr[] = { "a", "c", "d", "b" };
+	int i = 0;
+	int sz = sizeof(arr) / sizeof(arr[0]);//利用数组长度来确定qsort函数参数
+	qsort(arr, sz, sizeof(int), compare);
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+	return 0;
+}*/
+
+
+
+
+//冒泡排序
+int Cmp(const void * p1, const void * p2)
+{
+	return (*(int *)p1 - *(int *)p2);
+}
+
+void Swap(void *p1, void *p2, int size)
+{
+	int i = 0;
+	for (i = 0; i < size; i++)
+	{
+		char tmp = *((char*)p1 + i);
+		*((char *)p1 + i) = *((char *)p2 + i);
+		*((char *)p2 + i) = tmp;
+	}
+}
+
+void Bubble(void *base, int count, int size, int(*cmp)(void *, void *))
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < count - 1; i++)
+	{
+		for (j = 0; j < count - i - 1; j++)
+		{
+			if (cmp((char *)base + j*size, (char *)base + (j + 1)* size) > 0)
+			{
+				Swap((char *)base + j*size, (char *)base + (j + 1)*size, size);
+			}
+		}
+	}
+}
+
+/*int main()
+{
+	int arr[] = { 1, 3, 5, 7, 4, 6, 2, 1, 36, 21, 14 };//整型为直接输出
+	//char *arr[] = { "aaa", "ddd", "ccc", "bbb" };//字符串输出其每个字符串的首地址
+	int i = 0;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	Bubble(arr, sz, sizeof (int), Cmp);
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+	return 0;
+}*/
+//模拟函数实现对字符的左旋（利用其每个字符的准确地址）
+void LeftRot(char* dst, int k)
+{
+	int sz = strlen(dst);
+	char* p;
+	char* q;
+	for (p = dst + k - 1; p >= dst; --p) 
+	{
+		for (q = p; q < p + sz - k; ++q) 
+		{
+			char tmp = *q;
+			*q = *(q + 1);
+			*(q + 1) = tmp;
+		}
+	}
+}
+
+int main()
+{
+	char input[30];
+	scanf("%s", input);
+	int k = 0;
+	printf("请输入你需要左旋的数位：\n");
+	scanf("%d", &k);
+	if (k > (int)strlen(input))
+	{
+		printf("您的输入越界，请重新输入：\n");
+	}
+	LeftRot(input, k);
+	printf("%s", input);
 	return 0;
 }

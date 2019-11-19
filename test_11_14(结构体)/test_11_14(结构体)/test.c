@@ -135,7 +135,7 @@ enum OPTION
 		switch (option)//通过枚举变量的可读性，联系所具体创建的函数
 		{
 		case EXIT:
-			printf("您好，系统推出成功！！！\n");
+			printf("您好，系统退出成功！！！\n");
 			break;
 		case ADD:
 			AddContact(&ct);

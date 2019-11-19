@@ -37,7 +37,7 @@ void testContact()
 		switch (option)
 		{
 		case EXIT:
-			printf("您好，系统推出成功！！！\n");
+			printf("您好，系统退出成功！！！\n");
 			break;
 		case ADD:
 			AddContact(&ct);
