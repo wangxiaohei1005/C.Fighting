@@ -331,18 +331,38 @@ void LeftRot(char* dst, int k)
 	}
 }
 
+//int main()
+//{
+//	char input[30];
+//	scanf("%s", input);
+//	int k = 0;
+//	printf("请输入你需要左旋的数位：\n");
+//	scanf("%d", &k);
+//	if (k > (int)strlen(input))
+//	{
+//		printf("您的输入越界，请重新输入：\n");
+//	}
+//	LeftRot(input, k);
+//	printf("%s", input);
+//	return 0;
+//}
+
+int IsRotate(char* str, char* dst)
+{
+	int len = strlen(str);
+	char* src = (char*)malloc(len * 2 + 1);
+	strcpy(src, str);
+	strcat(src, str);
+	int ret = (strstr(src, dst) == NULL ? 0 : 1);
+	free(src);
+	return ret;
+}
+
 int main()
 {
-	char input[30];
-	scanf("%s", input);
-	int k = 0;
-	printf("请输入你需要左旋的数位：\n");
-	scanf("%d", &k);
-	if (k > (int)strlen(input))
-	{
-		printf("您的输入越界，请重新输入：\n");
-	}
-	LeftRot(input, k);
-	printf("%s", input);
+	char* arr1 = "AABCD";
+	char* arr2 = "BCDAB";
+	int tmp = IsRotate(arr1,arr2);
+	printf("%d\n", tmp);
 	return 0;
 }
