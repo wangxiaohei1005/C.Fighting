@@ -358,11 +358,55 @@ int IsRotate(char* str, char* dst)
 	return ret;
 }
 
+//int main()
+//{
+//	char* arr1 = "AABCD";
+//	char* arr2 = "BCDAB";
+//	int tmp = IsRotate(arr1,arr2);
+//	printf("%d\n", tmp);
+//	return 0;
+//}
+
+#include <stdlib.h>
+
+int Found(int* dst, int sz)
+{
+	int count = 0;
+	for (int i = 0; i < sz; ++i)
+	{
+		count = 0;
+		for (int j = 0; j < sz; ++j)
+		{
+			if (dst[i] == dst[j])
+			{
+				count++;
+			}
+		}
+		if (count == 1)
+		{
+			printf("%d\n", dst[i]);
+		}
+	}
+	return count;
+}
+//int main()
+//{
+//	int arr[]= { 1, 1, 3, 5, 5, 9, 3, 6, 7, 4, 6 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	Found(arr, sz);
+//	return 0;
+//}
 int main()
 {
-	char* arr1 = "AABCD";
-	char* arr2 = "BCDAB";
-	int tmp = IsRotate(arr1,arr2);
-	printf("%d\n", tmp);
+	int money = 20;
+	int sum = 0;
+	money;
+	while (money != 0)
+	{
+		sum += money;
+		money = money / 2;
+
+	}
+	printf("%d", sum + 1);
 	return 0;
 }
