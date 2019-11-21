@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 
 enum day//枚举变量名
 {
@@ -167,3 +168,121 @@ enum OPTION
 	} while (option);
 
 }*/
+
+//void test()
+//{
+//	int *p = (int*)malloc(sz);//若sz所代表的值为空，程序崩溃（型为对空指针赋值）
+//	*p = 20;
+//	free(p);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+
+//void test()
+//{
+//	int i = 0;
+//	int *p = (int *)malloc(10 * sizeof(int));
+//	if (NULL == p)
+//	{
+//		exit(EXIT_FAILURE);
+//	}
+//	for (i = 0; i <= 10; ++i)
+//	{
+//
+//		*(p + i) = i;//越界访问，申请的内存为10，访问越界
+//	}
+//	free(p);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+/*void test()
+{
+	int a = 10;
+	int *p = &a;
+	free(p);
+}
+int main()
+{
+	test();
+	return 0;
+}*///非动态内存开辟出的地址不能释放
+
+//内存泄漏问题
+//void test()
+//{
+//	int *p = (int *)malloc(100*1024*1024*1024**1024);//当开辟过多：错误	2	error C2100: 非法的间接寻址	f:\cccccgeting\c.fighting\test_11_14(结构体)\test_11_14(结构体)\test.c	221	1	test_11_14(结构体)
+////会出现使得堆区动态内存不足开辟
+//	if (NULL != p)
+//	{
+//		*p = 20;
+//	}
+//	//此处没有对动态开辟的内存进行释放，即内存泄漏
+//}
+//
+//int main()
+//{
+//
+//	test();
+//	return 0;
+//}
+#include <string.h>
+/*void GetMemory(char *p)
+{
+	p = (char *)malloc(100);
+}
+
+void test(void)
+{
+	char *str = NULL;
+	GetMemory(str);
+	strcpy(str, "hello world");
+	printf(str);
+}
+int main()
+{
+	test();
+	return 0;
+}*/
+
+/*char *GetMemory(void)
+{
+	char p[] = "hello world";
+	return p;
+}
+void test(void)
+{
+	char *str = NULL;
+	str = GetMemory();
+	printf(str);
+}
+
+int main()
+{
+	test();
+	return 0;
+}*/
+
+void test()
+{
+	char *str = (char *)malloc(100);
+	strcpy(str, "hello");
+	free(str);
+	if (str != NULL)
+	{
+		strcpy(str, "world");
+		printf(str);
+	}
+}
+int main()
+{
+	test();
+	return 0;
+}
