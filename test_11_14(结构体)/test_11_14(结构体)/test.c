@@ -1,10 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define _CRT_SECURE_NO_WARNINGS 1
 
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
 
-enum day//Ã¶¾Ù±äÁ¿Ãû
+enum day//æšä¸¾å˜é‡å
 {
 	MON,
 	TUES,
@@ -22,7 +22,7 @@ enum student
 	NUMBER,
 };
 
-//½á¹¹ÌåÉùÃ÷·½Ê½
+//ç»“æ„ä½“å£°æ˜æ–¹å¼
 //struct Student
 //{
 //	char name[128];
@@ -31,7 +31,7 @@ enum student
 //};
 //int main()
 //{
-//	struct Student S;//µäĞÍ¶¨Òå½á¹¹Ìå±äÁ¿·½Ê½
+//	struct Student S;//å…¸å‹å®šä¹‰ç»“æ„ä½“å˜é‡æ–¹å¼
 //	return 0;
 //}
 //
@@ -40,30 +40,30 @@ enum student
 //	char name[128];
 //	int age;
 //	char tel[20];
-//}S; // SÊÇ½á¹¹ÌåÀàĞÍ
+//}S; // Sæ˜¯ç»“æ„ä½“ç±»å‹
 //
 //struct Student
 //{
 //	char name[128];
 //	int age;
 //	char tel[20];
-//}S;//½á¹¹Ìå±äÁ¿
+//}S;//ç»“æ„ä½“å˜é‡
 //
 //struct
 //{
 //	char name[128];
 //	int age;
 //	char tel[20];
-//}S; // SÊÇÎŞÀàĞÍÀàĞÍµÄ½á¹¹Ìå±äÁ¿£¨ÄäÃû½á¹¹Ìå£©
+//}S; // Sæ˜¯æ— ç±»å‹ç±»å‹çš„ç»“æ„ä½“å˜é‡ï¼ˆåŒ¿åç»“æ„ä½“ï¼‰
 //
 //typedef struct Ret
 //{
 //	int data;
 //	struct Ret* next;
-//}Ret;//ÔÚ½á¹¹ÌåÖĞ²»¿ÉÓÃÖ±½ÓµÄ Ret* next,ÒòÎªRetÊÇÔÚ¶¨ÒåÍê³ÉÖ®ºó²ÅÓĞ¶¨ÒåµÄ
+//}Ret;//åœ¨ç»“æ„ä½“ä¸­ä¸å¯ç”¨ç›´æ¥çš„ Ret* next,å› ä¸ºRetæ˜¯åœ¨å®šä¹‰å®Œæˆä¹‹åæ‰æœ‰å®šä¹‰çš„
 //
 //
-////½á¹¹Ìå±äÁ¿µÄ¶¨Òå
+////ç»“æ„ä½“å˜é‡çš„å®šä¹‰
 //struct Point
 //{
 //	int x;
@@ -85,18 +85,18 @@ enum student
 //	p1.x = 1;
 //	p1.x = 2;
 //
-//	struct Point p2 = {3, 4};//Á½ÖÖ¶¨Òå·½Ê½
+//	struct Point p2 = {3, 4};//ä¸¤ç§å®šä¹‰æ–¹å¼
 //
 //	Student s1;
-//	strcpy(s1.name, "peter");//×Ö·û´®¶¨Òå²»¿ÉÊ¹ÓÃ¸³Öµ£º=    ĞèÒªÊ¹ÓÃ¿½±´º¯Êı
+//	strcpy(s1.name, "peter");//å­—ç¬¦ä¸²å®šä¹‰ä¸å¯ä½¿ç”¨èµ‹å€¼ï¼š=    éœ€è¦ä½¿ç”¨æ‹·è´å‡½æ•°
 //	s1.age = 18;
 //	strcpy(s1.tel, "110");
 //	s1.p.x = 1;
-//	s1.p.y = 2;//ÕûĞÎ¶¨Òå¿ÉÒÔÖ±½Ó¶¨Òå
+//	s1.p.y = 2;//æ•´å½¢å®šä¹‰å¯ä»¥ç›´æ¥å®šä¹‰
 //
-//	Student s2 = { "jack", 5, "112", {2,3} };//Èô½á¹¹ÌåÖĞ´æÔÚÇ¶Ì×½á¹¹Ìå£¬¿ÉÒÔ{{-----}}À´¶¨Òå
+//	Student s2 = { "jack", 5, "112", {2,3} };//è‹¥ç»“æ„ä½“ä¸­å­˜åœ¨åµŒå¥—ç»“æ„ä½“ï¼Œå¯ä»¥{{-----}}æ¥å®šä¹‰
 //	Student copy;
-//	memcpy(&copy, &s1, sizeof(Student));//¶Ô½á¹¹ÌåµÄ¿½±´
+//	memcpy(&copy, &s1, sizeof(Student));//å¯¹ç»“æ„ä½“çš„æ‹·è´
 //
 //	return 0;
 //}
@@ -109,8 +109,8 @@ struct Student
 
 	int weight;
 
-}s;//½á¹¹ÌåÃ¶¾Ù¿ÎÌæ»»¶ÔcaseÓï¾äµÄÌæ»»£¬´Ó¶øÃ÷ÏÔÌáÉı´úÂëµÄ¿É¶ÁĞÔ
-//ÀıÈçÍ¨Ñ¶Â¼¾ßÌåÓ¦ÓÃ£º
+}s;//ç»“æ„ä½“æšä¸¾è¯¾æ›¿æ¢å¯¹caseè¯­å¥çš„æ›¿æ¢ï¼Œä»è€Œæ˜æ˜¾æå‡ä»£ç çš„å¯è¯»æ€§
+//ä¾‹å¦‚é€šè®¯å½•å…·ä½“åº”ç”¨ï¼š
 enum OPTION
 {
 	EXIT,
@@ -133,10 +133,10 @@ enum OPTION
 	{
 		menu();
 		scanf("%d", &option);
-		switch (option)//Í¨¹ıÃ¶¾Ù±äÁ¿µÄ¿É¶ÁĞÔ£¬ÁªÏµËù¾ßÌå´´½¨µÄº¯Êı
+		switch (option)//é€šè¿‡æšä¸¾å˜é‡çš„å¯è¯»æ€§ï¼Œè”ç³»æ‰€å…·ä½“åˆ›å»ºçš„å‡½æ•°
 		{
 		case EXIT:
-			printf("ÄúºÃ£¬ÏµÍ³ÍË³ö³É¹¦£¡£¡£¡\n");
+			printf("æ‚¨å¥½ï¼Œç³»ç»Ÿé€€å‡ºæˆåŠŸï¼ï¼ï¼\n");
 			break;
 		case ADD:
 			AddContact(&ct);
@@ -163,7 +163,7 @@ enum OPTION
 			SaveContact(&ct);
 			break;
 		default:
-			printf("Çë×¢Òâ£¬ÊäÈëµÄÑ¡ÏîÓĞÎó£¡£¡£¡ÇëÖØĞÂÊäÈë£¡£¡£¡\n");
+			printf("è¯·æ³¨æ„ï¼Œè¾“å…¥çš„é€‰é¡¹æœ‰è¯¯ï¼ï¼ï¼è¯·é‡æ–°è¾“å…¥ï¼ï¼ï¼\n");
 		}
 	} while (option);
 
@@ -171,7 +171,7 @@ enum OPTION
 
 //void test()
 //{
-//	int *p = (int*)malloc(sz);//ÈôszËù´ú±íµÄÖµÎª¿Õ£¬³ÌĞò±ÀÀ££¨ĞÍÎª¶Ô¿ÕÖ¸Õë¸³Öµ£©
+//	int *p = (int*)malloc(sz);//è‹¥szæ‰€ä»£è¡¨çš„å€¼ä¸ºç©ºï¼Œç¨‹åºå´©æºƒï¼ˆå‹ä¸ºå¯¹ç©ºæŒ‡é’ˆèµ‹å€¼ï¼‰
 //	*p = 20;
 //	free(p);
 //}
@@ -193,7 +193,7 @@ enum OPTION
 //	for (i = 0; i <= 10; ++i)
 //	{
 //
-//		*(p + i) = i;//Ô½½ç·ÃÎÊ£¬ÉêÇëµÄÄÚ´æÎª10£¬·ÃÎÊÔ½½ç
+//		*(p + i) = i;//è¶Šç•Œè®¿é—®ï¼Œç”³è¯·çš„å†…å­˜ä¸º10ï¼Œè®¿é—®è¶Šç•Œ
 //	}
 //	free(p);
 //}
@@ -213,18 +213,18 @@ int main()
 {
 	test();
 	return 0;
-}*///·Ç¶¯Ì¬ÄÚ´æ¿ª±Ù³öµÄµØÖ·²»ÄÜÊÍ·Å
+}*///éåŠ¨æ€å†…å­˜å¼€è¾Ÿå‡ºçš„åœ°å€ä¸èƒ½é‡Šæ”¾
 
-//ÄÚ´æĞ¹Â©ÎÊÌâ
+//å†…å­˜æ³„æ¼é—®é¢˜
 //void test()
 //{
-//	int *p = (int *)malloc(100*1024*1024*1024**1024);//µ±¿ª±Ù¹ı¶à£º´íÎó	2	error C2100: ·Ç·¨µÄ¼ä½ÓÑ°Ö·	f:\cccccgeting\c.fighting\test_11_14(½á¹¹Ìå)\test_11_14(½á¹¹Ìå)\test.c	221	1	test_11_14(½á¹¹Ìå)
-////»á³öÏÖÊ¹µÃ¶ÑÇø¶¯Ì¬ÄÚ´æ²»×ã¿ª±Ù
+//	int *p = (int *)malloc(100*1024*1024*1024**1024);//å½“å¼€è¾Ÿè¿‡å¤šï¼šé”™è¯¯	2	error C2100: éæ³•çš„é—´æ¥å¯»å€	f:\cccccgeting\c.fighting\test_11_14(ç»“æ„ä½“)\test_11_14(ç»“æ„ä½“)\test.c	221	1	test_11_14(ç»“æ„ä½“)
+////ä¼šå‡ºç°ä½¿å¾—å †åŒºåŠ¨æ€å†…å­˜ä¸è¶³å¼€è¾Ÿ
 //	if (NULL != p)
 //	{
 //		*p = 20;
 //	}
-//	//´Ë´¦Ã»ÓĞ¶Ô¶¯Ì¬¿ª±ÙµÄÄÚ´æ½øĞĞÊÍ·Å£¬¼´ÄÚ´æĞ¹Â©
+//	//æ­¤å¤„æ²¡æœ‰å¯¹åŠ¨æ€å¼€è¾Ÿçš„å†…å­˜è¿›è¡Œé‡Šæ”¾ï¼Œå³å†…å­˜æ³„æ¼
 //}
 //
 //int main()
@@ -284,5 +284,44 @@ void test()
 int main()
 {
 	test();
+	return 0;
+}
+struct _iobuf {
+	char *_ptr;
+	int Â  _cnt;
+	char *_base;
+	int Â  _flag;
+	int Â  _file;
+	int Â  _charbuf;
+	int Â  _bufsiz;
+	char *_tmpfname;
+};
+typedef struct _iobuf FILE;
+
+int main()
+{
+	FILE * pFile;
+	pFile = fopen("myfile.txt", "w");
+	if (pFile != NULL)
+	{
+		fputs("fopen example", pFile);
+		fclose(pFile);
+	}
+	return 0;
+}
+
+int main()
+{
+	FILE * pFile;
+	long size;
+	pFile = fopen("myfile.txt", "rb");
+	if (pFile == NULL) perror("Error opening file");
+	else
+	{
+		fseek(pFile, 0, SEEK_END);
+		size = ftell(pFile);
+		fclose(pFile);
+		printf("Size of myfile.txt: %ld bytes.\n", size);
+	}
 	return 0;
 }
