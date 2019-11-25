@@ -121,3 +121,136 @@ int main(void)
 	fp = NULL;
 	return 0;
 }
+
+typedef struct st_type
+{
+	int i;
+	int a[];//柔性数组成员可根据数组大小自行调整
+}type_a;  
+
+int main()
+{
+	FILE* fout = fopen("main.cpp", "r");
+	FILE* fin = fopen("main.c", "w");
+
+	int flag = 0;
+
+	char out_ch = fgetc(fout);
+	while (out_ch != EOF)
+	{
+		if (out_ch == '/')
+		{
+			char next_ch = fgetc(fout);
+			if (next_ch == '/')
+			{
+				//fputc('/', fin);
+				//fputc('*', fin);
+				fputs("/*", fin);
+
+				flag = 1;
+			}
+			else
+			{
+				fputc(out_ch, fin);
+				fputc(next_ch, fin);
+			}
+		}
+		else
+		{
+			if (flag == 1 && out_ch == '\n')
+			{
+				fputs("*/", fin);
+				fputc('\n', fin);
+				flag = 0;
+			}
+			else
+			{
+				fputc(out_ch, fin);
+			}
+		}
+
+		out_ch = fgetc(fout);
+	}
+
+	fclose(fout);
+	fclose(fin);
+
+	return 0;
+}
+int main()
+{
+	FILE* fout = fopen("test.txt", "r");
+	char out_ch;
+	for (size_t i = 0; i < 5; ++i)
+	{
+		out_ch = fgetc(fout);
+		printf("%c", out_ch);
+	}
+	fseek(fout, 5, SEEK_CUR);
+
+	while (out_ch != EOF)
+	{
+		out_ch = fgetc(fout);
+		printf("%c", out_ch);
+	}
+
+	return 0;
+}
+struct ContactInfo
+{
+	char name[20];
+	char tel[20];
+	int age;
+};
+
+int main()
+{
+	struct ContactInfo infos[2] = { { "jack", "18516283075", 18 }, { "rose", "18516283076", 17 } };
+
+	FILE* fin = fopen("contact.bin", "wb");
+	// 二进制写
+	fwrite(infos, sizeof(struct ContactInfo), 2, fin);
+
+	fclose(fin);
+
+	FILE* fout = fopen("contact.bin", "rb");
+	struct ContactInfo rd_infos[2];
+	// 二进制读
+	fread(rd_infos, sizeof(struct ContactInfo), 2, fout);
+
+	fclose(fout);
+};
+
+int main()
+{
+	struct ContactInfo infos[2] = { { "jack", "18516283075", 18 }, { "rose", "18516283076", 17 } };
+
+	FILE* fin = fopen("contact.txt", "w");
+	// 文本写
+	//fprintf(stdout, "%s\n%s\n%d", infos[0].name, infos[0].tel, infos[0].age);
+	fprintf(fin, "%s\n%s\n%d", infos[0].name, infos[0].tel, infos[0].age);
+
+
+	fclose(fin);
+
+	FILE* fout = fopen("contact.txt", "r");
+	struct ContactInfo rd_infos[2];
+	//fscanf(stdin, "%s%s%d", rd_infos[0].name, rd_infos[0].tel, &rd_infos[0].age);
+	fscanf(fout, "%s%s%d", rd_infos[0].name, rd_infos[0].tel, &rd_infos[0].age);
+
+
+	fclose(fout);
+};
+
+int main()
+{
+	int a = 0;
+	for (; a < 10; ++a)
+	{
+		printf("%d\n", a);
+	}
+	int i = 0;
+	++i;
+
+	return 0;
+}
