@@ -1,50 +1,28 @@
-#include <stdio.h> 
-// 顺序表的静态存储
-#define N 20
-typedef int SLDataType;
+#pragma once
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+
+typedef int SLDateType;
 typedef struct SeqList
 {
-	SLDataType array[N]; // 定长数组
-		size_t size; // 有效数据的个数 
-}SeqList;
-// 顺序表的动态存储
-typedef struct SeqList
-{
-	SLDataType* array; // 指向动态开辟的数组
-	size_t size; // 有效数据个数
-	size_t capicity; // 容量空间的大小
-}SeqList;
-typedef struct SeqList
-{
-	SLDataType* array;
-	// 指向动态开辟的数组 
-	size_t size ;
-	// 有效数据个数 
-	size_t capicity ; 
-	// 容量空间的大小
+	SLDateType* a;
+	size_t size;
+	size_t capacity; // unsigned int
 }SeqList;
 
+void SeqListInit(SeqList* ps);//初始化
+void SeqListDestory(SeqList* ps);//销毁
+void SeqListPrint(SeqList* ps);//打印
+void SeqListPushBack(SeqList* ps, SLDateType x);//尾插
+void SeqListPushFront(SeqList* ps, SLDateType x);//头插
+void SeqListPopFront(SeqList* ps);//头删
+void SeqListPopBack(SeqList* ps);//尾删
 
-// 基本增删查改接口
-// 顺序表初始化
-void SeqListInit(SeqList* psl, size_t capacity);
-// 顺序表销毁
-void SeqListDestory(SeqList* psl);
-// 顺序表打印
-void SeqListPrint(SeqList* psl);
-// 检查空间，如果满了，进行增容
-void CheckCapacity(SeqList* psl);
-// 顺序表尾插
-void SeqListPushBack(SeqList* psl, SLDataType x);
-// 顺序表尾删
-void SeqListPopBack(SeqList* psl);
-// 顺序表头插
-void SeqListPushFront(SeqList* psl, SLDataType x);
-// 顺序表头删
-void SeqListPopFront(SeqList* psl);
+
 // 顺序表查找
-int SeqListFind(SeqList* psl, SLDataType x); 
+int SeqListFind(SeqList* ps, SLDateType x);
 // 顺序表在pos位置插入x
-void SeqListInsert(SeqList* psl, size_t pos, SLDataType x);
+void SeqListInsert(SeqList* ps, size_t pos, SLDateType x);
 // 顺序表删除pos位置的值
-void SeqListErase(SeqList* psl, size_t pos);
+void SeqListErase(SeqList* ps, size_t pos);
