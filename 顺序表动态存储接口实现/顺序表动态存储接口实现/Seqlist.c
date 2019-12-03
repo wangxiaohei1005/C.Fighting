@@ -1,6 +1,6 @@
 #include "SeqList.h"
 
-void SeqListInit(SeqList* ps)//初始化
+void SeqListInit(SeqList* ps)
 {
 	assert(ps);
 
@@ -8,14 +8,16 @@ void SeqListInit(SeqList* ps)//初始化
 	ps->size = 0;
 	ps->capacity = 0;
 }
-void SeqListDestory(SeqList* ps)//销毁
+
+void SeqListDestory(SeqList* ps)
 {
 	assert(ps);
 	free(ps->a);
 	ps->a = NULL;
 	ps->size = ps->capacity = 0;
 }
-void SeqListPrint(SeqList* ps)//打印
+
+void SeqListPrint(SeqList* ps)
 {
 	assert(ps);
 
@@ -26,37 +28,135 @@ void SeqListPrint(SeqList* ps)//打印
 
 	printf("%\n");
 }
-void SeqListPushBack(SeqList* ps, SLDateType x)//尾插
+
+void CheckCacpity(SeqList* ps)
+{
+	if (ps->size == ps->capacity)
+	{
+		size_t newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+		ps->a = (SLDateType*)realloc(ps->a, newcapacity*sizeof(SLDateType));
+		ps->capacity = newcapacity;
+	}
+}
+
+void SeqListPushBack(SeqList* ps, SLDateType x)
+{
+	//assert(ps);
+	//CheckCacpity(ps);
+
+	//ps->a[ps->size] = x;
+	//ps->size++;
+
+	SeqListInsert(ps, ps->size, x);
+}
+
+void SeqListPushFront(SeqList* ps, SLDateType x)
 {
 	assert(ps);
 
+	/*CheckCacpity(ps);
+
+	size_t end = ps->size;
+	while (end > 0)
+	{
+	ps->a[end] = ps->a[end - 1];
+	--end;
+	}
+
+	ps->a[0] = x;
+	++ps->size;*/
+
+	SeqListInsert(ps, 0, x);
 }
-void SeqListPushFront(SeqList* ps, SLDateType x)//头插
+
+void SeqListPopFront(SeqList* ps)
 {
+	assert(ps);
 
+	//size_t start = 0;
+	//while (start < ps->size-1)
+	//{
+	//	ps->a[start] = ps->a[start + 1];
+	//	++start;
+	//}
+	//size_t start = 1;
+	//while (start < ps->size)
+	//{
+	//	ps->a[start-1] = ps->a[start];
+	//	++start;
+	//}
+
+	//--ps->size;
+	SeqListErase(ps, 0);
 }
-void SeqListPopFront(SeqList* ps)//头删
+
+void SeqListPopBack(SeqList* ps)
 {
+	assert(ps);
 
+	//ps->a[ps->size - 1] = 0;
+	//ps->size--;
+	SeqListErase(ps, ps->size - 1);
 }
-void SeqListPopBack(SeqList* ps)//尾删
-{
 
-}
-
-
-// 顺序表查找
 int SeqListFind(SeqList* ps, SLDateType x)
 {
+	for (size_t i = 0; i < ps->size; ++i)
+	{
+		if (ps->a[i] == x)
+		{
+			return i;
+		}
+	}
 
+	return -1;
 }
+
 // 顺序表在pos位置插入x
 void SeqListInsert(SeqList* ps, size_t pos, SLDateType x)
 {
+	assert(ps);
+	assert(pos <= ps->size);
 
+	CheckCacpity(ps);
+
+	//int end = ps->size - 1;
+	//while (end >= (int)pos)
+	//{
+	//	ps->a[end + 1] = ps->a[end];
+	//	--end;
+	//}
+
+	size_t end = ps->size;
+	while (end > pos)
+	{
+		ps->a[end] = ps->a[end - 1];
+		--end;
+	}
+
+
+	ps->a[pos] = x;
+	ps->size++;
 }
+
 // 顺序表删除pos位置的值
 void SeqListErase(SeqList* ps, size_t pos)
 {
+	assert(ps && pos < ps->size);
 
+	//size_t start = pos;
+	//while (start < ps->size-1)
+	//{
+	//	ps->a[start] = ps->a[start + 1];
+	//	++start;
+	//}
+
+	size_t start = pos + 1;
+	while (start < ps->size)
+	{
+		ps->a[start - 1] = ps->a[start];
+		++start;
+	}
+
+	ps->size--;
 }
