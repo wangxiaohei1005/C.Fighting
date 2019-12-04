@@ -77,30 +77,75 @@
 //{
 //	return N < 2 ? N : Factorial(N - 1)*N;
 //}
-int removeElement(int* nums, int numsSize, int val)
-{
-	int src = 0;
-	int dst = 0;
-	while (numsSize > src)
+//int removeElement(int* nums, int numsSize, int val)
+//{
+//	int src = 0;
+//	int dst = 0;
+//	while (numsSize > src)
+//	{
+//		if (nums[src] != val)
+//		{
+//			nums[dst] = nums[src];
+//			src++;
+//			dst++;
+//		}
+//		else
+//		{
+//			src++;
+//		}
+//		if (nums[dst] == NULL && nums[src] )
+//		{
+//			return 0;
+//		}
+//		else
+//		{
+//			return nums[dst];
+//		}
+//	}
+//	
+//}
+
+int removeElement(int* nums, int numsSize, int val){
+	int k = 0;
+	for (int i = 0; i < numsSize; i++)
 	{
-		if (nums[src] != val)
+		if (nums[i] != val)
 		{
-			nums[dst] = nums[src];
-			src++;
-			dst++;
-		}
-		else
-		{
-			src++;
-		}
-		if (nums[dst] == NULL && nums[src] )
-		{
-			return 0;
-		}
-		else
-		{
-			return nums[dst];
+			nums[k] = nums[i];
+			k++;
 		}
 	}
-	
+	return k;
+}
+int removeDuplicates(int *nums, int numsSize){
+	if (numsSize == 0 || numsSize == 1) 
+		return numsSize;
+	int k = 1;
+	for (int i = 1; i<numsSize; i++)
+	{
+		if (nums[i] != nums[i - 1])
+		{
+			nums[k] = nums[i];
+			++k;
+		}
+	}
+	return k;
+}
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+	void reverse(int* nums, int begin, int end)
+	{
+		while (begin < end)
+		{
+			int tmp = nums[begin];
+			nums[begin] = nums[end];
+			nums[end] = tmp;
+
+			++begin;
+			--end;
+		}
+	}
+
+	int end 1 = 0;
+	int end 2 = 0;
+	int end = 0;
 }

@@ -41,52 +41,18 @@ void CheckCacpity(SeqList* ps)
 
 void SeqListPushBack(SeqList* ps, SLDateType x)
 {
-	//assert(ps);
-	//CheckCacpity(ps);
-
-	//ps->a[ps->size] = x;
-	//ps->size++;
-
 	SeqListInsert(ps, ps->size, x);
 }
 
 void SeqListPushFront(SeqList* ps, SLDateType x)
 {
 	assert(ps);
-
-	/*CheckCacpity(ps);
-
-	size_t end = ps->size;
-	while (end > 0)
-	{
-	ps->a[end] = ps->a[end - 1];
-	--end;
-	}
-
-	ps->a[0] = x;
-	++ps->size;*/
-
 	SeqListInsert(ps, 0, x);
 }
 
 void SeqListPopFront(SeqList* ps)
 {
 	assert(ps);
-
-	//size_t start = 0;
-	//while (start < ps->size-1)
-	//{
-	//	ps->a[start] = ps->a[start + 1];
-	//	++start;
-	//}
-	//size_t start = 1;
-	//while (start < ps->size)
-	//{
-	//	ps->a[start-1] = ps->a[start];
-	//	++start;
-	//}
-
-	//--ps->size;
 	SeqListErase(ps, 0);
 }
 
@@ -94,8 +60,6 @@ void SeqListPopBack(SeqList* ps)
 {
 	assert(ps);
 
-	//ps->a[ps->size - 1] = 0;
-	//ps->size--;
 	SeqListErase(ps, ps->size - 1);
 }
 
@@ -119,14 +83,6 @@ void SeqListInsert(SeqList* ps, size_t pos, SLDateType x)
 	assert(pos <= ps->size);
 
 	CheckCacpity(ps);
-
-	//int end = ps->size - 1;
-	//while (end >= (int)pos)
-	//{
-	//	ps->a[end + 1] = ps->a[end];
-	//	--end;
-	//}
-
 	size_t end = ps->size;
 	while (end > pos)
 	{
@@ -143,14 +99,6 @@ void SeqListInsert(SeqList* ps, size_t pos, SLDateType x)
 void SeqListErase(SeqList* ps, size_t pos)
 {
 	assert(ps && pos < ps->size);
-
-	//size_t start = pos;
-	//while (start < ps->size-1)
-	//{
-	//	ps->a[start] = ps->a[start + 1];
-	//	++start;
-	//}
-
 	size_t start = pos + 1;
 	while (start < ps->size)
 	{

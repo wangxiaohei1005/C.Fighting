@@ -6,10 +6,11 @@
 typedef int SLDateType;
 typedef struct SeqList
 {
-	SLDateType* a;
-	size_t size;
-	size_t capacity; // unsigned int
+	SLDataType* a; // 指向动态开辟的数组
+	size_t size;    // 有效数据个数
+	size_t capicity;  // 容量空间的大小
 }SeqList;
+
 
 void SeqListInit(SeqList* ps);//初始化
 void SeqListDestory(SeqList* ps);//销毁

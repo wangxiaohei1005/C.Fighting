@@ -1,6 +1,6 @@
 #include "Seqlist.h"
 
-int main()
+void test()
 {
 	SeqListInit(SeqList* ps);//初始化
 	SeqListDestory(SeqList* ps);//销毁
@@ -9,5 +9,9 @@ int main()
 	SeqListPushFront(SeqList* ps, SLDateType x);//头插
 	SeqListPopFront(SeqList* ps);//头删
 	SeqListPopBack(SeqList* ps);//尾删
+}
+int main()
+{
+	test();
 	return 0;
 }
