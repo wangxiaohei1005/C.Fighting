@@ -145,86 +145,216 @@
 //		}
 //	}
 //
-//	int end 1 = 0;
-//	int end 2 = 0;
-//	int end = 0;
+//	int end1 = m - 1;
+//	int end2 = n - 1;
+//	int end = m + n - 1;
+//	while (end1 >= 0 && end2 >= 0)
+//	{
+//		if (nums1[end1] > nums2[end2])
+//		{
+//			nums1[end--] = nums1[end1--];
+//		}
+//		else
+//		{
+//			nums1[end--] = nums2[end2--];
+//		}
+//	}
+//
+//	while (end2 >= 0)
+//	{
+//		nums1[end--] = nums2[end2--];
+//
+//	}
 //}
 
 
-void SListPrint(SListNode* pList)
+//void SListPrint(SListNode* pList)
+//{
+//	SListNode* cur = pList;
+//	while (cur != NULL)
+//	{
+//		printf("%d->", cur->data);
+//		cur = cur->next;
+//	}
+//
+//	printf("NULL\n");
+//}
+//
+//SListNode* BuySListNode(SLTDataType x)
+//{
+//	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+//	newNode->data = x;
+//	newNode->next = NULL;
+//
+//	return newNode;
+//}
+//
+//void SListPushBack(SListNode** ppList, SLTDataType x)
+//{
+//	SListNode* newNode = BuySListNode(x);
+//
+//	if (*ppList == NULL)
+//	{
+//		*ppList = newNode;
+//	}
+//	else
+//	{
+//		SListNode* tail = *ppList;
+//		while (tail->next != NULL)
+//		{
+//			tail = tail->next;
+//		}
+//
+//		tail->next = newNode;
+//	}
+//}
+//
+//void SListPushFront(SListNode** ppList, SLTDataType x)
+//{
+//	SListNode* newNode = BuySListNode(x);
+//	newNode->next = *ppList;
+//	*ppList = newNode;
+//}
+//
+//void SListPopBack(SListNode** ppList)
+//{
+//	// 1.空
+//	// 2.只有一个节点
+//	// 3.有多个节点
+//	if (*ppList == NULL)
+//	{
+//		return;
+//	}
+//	else if ((*ppList)->next == NULL)
+//	{
+//		free(*ppList);
+//		*ppList = NULL;
+//	}
+//	else
+//	{
+//		SListNode* prev = NULL;
+//		SListNode* tail = *ppList;
+//		while (tail->next != NULL)
+//		{
+//			prev = tail;
+//			tail = tail->next;
+//		}
+//
+//		free(tail);
+//		if (prev != NULL)
+//			prev->next = NULL;
+//	}
+//}
+
+void reverse(int* nums, int begin, int end)
 {
-	SListNode* cur = pList;
-	while (cur != NULL)
+	while (begin < end)
 	{
-		printf("%d->", cur->data);
-		cur = cur->next;
+		int tmp = nums[begin];
+		nums[begin] = nums[end];
+		nums[end] = tmp;
+		++begin;
+		--end;
 	}
-
-	printf("NULL\n");
 }
-
-SListNode* BuySListNode(SLTDataType x)
-{
-	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
-	newNode->data = x;
-	newNode->next = NULL;
-
-	return newNode;
-}
-
-void SListPushBack(SListNode** ppList, SLTDataType x)
-{
-	SListNode* newNode = BuySListNode(x);
-
-	if (*ppList == NULL)
+int* addToArrayForm(int* A, int ASize, int K, int* returnSize){
+	int* addRet = (int*)malloc(10001 * sizeof(int));
+	int reti = 0;
+	int ai = ASize - 1;
+	int next = 0; // 进位值
+	while (ai >= 0 || K > 0)
 	{
-		*ppList = newNode;
-	}
-	else
-	{
-		SListNode* tail = *ppList;
-		while (tail->next != NULL)
+		int x1 = 0;
+		if (ai >= 0)
 		{
-			tail = tail->next;
+			x1 = A[ai];
+			--ai;
 		}
 
-		tail->next = newNode;
-	}
-}
-
-void SListPushFront(SListNode** ppList, SLTDataType x)
-{
-	SListNode* newNode = BuySListNode(x);
-	newNode->next = *ppList;
-	*ppList = newNode;
-}
-
-void SListPopBack(SListNode** ppList)
-{
-	// 1.空
-	// 2.只有一个节点
-	// 3.有多个节点
-	if (*ppList == NULL)
-	{
-		return;
-	}
-	else if ((*ppList)->next == NULL)
-	{
-		free(*ppList);
-		*ppList = NULL;
-	}
-	else
-	{
-		SListNode* prev = NULL;
-		SListNode* tail = *ppList;
-		while (tail->next != NULL)
+		int x2 = 0;
+		if (K > 0)
 		{
-			prev = tail;
-			tail = tail->next;
+			x2 = K % 10;
+			K /= 10;
 		}
 
-		free(tail);
-		if (prev != NULL)
-			prev->next = NULL;
+		int ret = x1 + x2 + next;
+		if (ret > 9)
+		{
+			ret %= 10;
+			next = 1;
+		}
+		else
+		{
+			next = 0;
+		}
+		addRet[reti++] = ret;
+	}
+
+	if (next == 1)
+	{
+		addRet[reti++] = 1;
+	}
+
+	reverse(addRet, 0, reti - 1);
+	*returnSize = reti;
+
+	return addRet;
+}
+void reverse(int* nums, int begin, int end)
+{
+	while (begin < end)
+	{
+		int tmp = nums[begin];
+		nums[begin] = nums[end];
+		nums[end] = tmp;
+		++begin;
+		--end;
+	}
+}
+
+void rotate(int* nums, int numsSize, int k){
+	if (k > numsSize)
+	{
+		k %= numsSize;
+	}
+
+	reverse(nums, 0, numsSize - 1);
+	reverse(nums, 0, k - 1);
+	reverse(nums, k, numsSize - 1);
+}
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+	void reverse(int* nums, int begin, int end)
+	{
+		while (begin < end)
+		{
+			int tmp = nums[begin];
+			nums[begin] = nums[end];
+			nums[end] = tmp;
+
+			++begin;
+			--end;
+		}
+	}
+
+	int end1 = m - 1;
+	int end2 = n - 1;
+	int end = m + n - 1;
+	while (end1 >= 0 && end2 >= 0)
+	{
+		if (nums1[end1] > nums2[end2])
+		{
+			nums1[end--] = nums1[end1--];
+		}
+		else
+		{
+			nums1[end--] = nums2[end2--];
+		}
+	}
+
+	while (end2 >= 0)
+	{
+		nums1[end--] = nums2[end2--];
+
 	}
 }
