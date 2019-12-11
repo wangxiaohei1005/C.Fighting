@@ -1,0 +1,144 @@
+C51 COMPILER V9.01   MAIN                                                                  11/27/2019 21:52:53 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: F:\软件\keil4\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <intrins.h>
+   3          
+   4          #define uchar unsigned char 
+   5          #define uint unsigned int
+   6          #define ulong unsigned long
+   7          
+   8          sbit ADC_CS=P2^4;
+   9          sbit ADC_RD=P2^3;
+  10          sbit ADC_WR=P2^2;
+  11          sbit led=P3^5;
+  12          sbit k1=P3^6;
+  13          sbit k2=P3^7;
+  14          sbit LCD_RS=P2^7;
+  15          sbit LCD_RW=P2^6;
+  16          sbit LCD_EN=P2^5;
+  17          
+  18          uint weight,weight_value,ADC_Value_1;
+  19          ulong ADC_Value;
+  20          bit bz,w;
+  21          
+  22          void yanshi(uint i){while(i--);}
+  23          
+  24          uchar ADC_0804()
+  25          {
+  26   1              uchar dat;      
+  27   1              ADC_WR=1;
+  28   1              _nop_();
+  29   1              ADC_WR=0;
+  30   1              _nop_();
+  31   1              ADC_WR=1;
+  32   1              yanshi(50);
+  33   1              ADC_RD=1;
+  34   1              _nop_();
+  35   1              ADC_RD=0;
+  36   1              _nop_();
+  37   1              dat=P1;
+  38   1              ADC_RD=1;
+  39   1              return dat;
+  40   1      }        
+  41          
+  42          void Write_1602(uchar dat,bit com_dat)          //LCD1602 写程序
+  43          {
+  44   1              LCD_RS=com_dat;           //控制LCD1602是写命令还是写数据
+  45   1              LCD_RW=0;               //写     1 是读
+  46   1              P0=dat;         //向LCD1602的数据端口写数据
+  47   1      
+  48   1              LCD_EN=1;                       //开使能
+  49   1              yanshi(50);      //延时
+  50   1              LCD_EN=0;                        //关使能
+  51   1              yanshi(50);        //延时
+  52   1      }
+  53          
+  54          void Write_1602_char(uchar *p)          //这个只能用在写数据   字符串方式写
+  55          {
+C51 COMPILER V9.01   MAIN                                                                  11/27/2019 21:52:53 PAGE 2   
+
+  56   1              while(*p != '\0')
+  57   1              {
+  58   2                      Write_1602(*p,1);
+  59   2                      p++;    
+  60   2              }       
+  61   1      }
+  62          
+  63          void LCD1602_INIT()              //1602初始化
+  64          {
+  65   1              Write_1602(0x38,0);
+  66   1              Write_1602(0x06,0);
+  67   1              Write_1602(0x0c,0);
+  68   1      }
+  69          
+  70          void key()
+  71          {
+  72   1              if(k1==1 && k2==1){bz=1;}
+  73   1      
+  74   1              if(k1==0 && bz==1){bz=0;w=1;weight_value = ADC_0804();led=0;}
+  75   1      
+  76   1              if(k2==0 && bz==1){bz=0;w=0;weight_value=ADC_Value_1;led=1;}
+  77   1      }
+  78          
+  79          void main()
+  80          {
+  81   1              uint dat,i;
+  82   1              ADC_CS=0;
+  83   1      
+  84   1              LCD1602_INIT();
+  85   1              Write_1602(0x80,0);
+  86   1              Write_1602_char("Weight:");
+  87   1              Write_1602(0x80 + 10,0);
+  88   1              Write_1602('g',1);                      
+  89   1      
+  90   1              ADC_Value_1 = ADC_0804();
+  91   1              weight_value=ADC_Value_1;
+  92   1      
+  93   1              while(1)
+  94   1              {
+  95   2                      key();
+  96   2                      i++;
+  97   2                      if(i>=300)
+  98   2                      {       
+  99   3                              i=0;
+ 100   3                              ADC_Value = ADC_0804();
+ 101   3                              if(ADC_Value >= weight_value){ADC_Value = (ADC_Value-weight_value)*200/255;}
+ 102   3                              else {ADC_Value = 0;}
+ 103   3                              
+ 104   3                              dat = ADC_Value;
+ 105   3                              dat = dat*92/10;
+ 106   3              
+ 107   3      
+ 108   3                      }
+ 109   2      
+ 110   2                      Write_1602(0x80 + 7,0);
+ 111   2                      Write_1602(dat/100%10 + 0x30,1);
+ 112   2                      Write_1602(dat/10%10 + 0x30,1);
+ 113   2                      Write_1602(dat%10 + 0x30,1);
+ 114   2              
+ 115   2                      weight = ADC_Value - weight_value;
+ 116   2              }
+ 117   1      }
+C51 COMPILER V9.01   MAIN                                                                  11/27/2019 21:52:53 PAGE 3   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    411    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
