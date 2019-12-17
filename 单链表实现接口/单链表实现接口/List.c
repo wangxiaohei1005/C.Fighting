@@ -1,4 +1,4 @@
-#include "SList.h"
+#include "List.h"
 
 void SListPrint(SListNode* pList)
 {
@@ -50,9 +50,6 @@ void SListPushFront(SListNode** ppList, SLTDataType x)
 
 void SListPopBack(SListNode** ppList)
 {
-	// 1.空
-	// 2.只有一个节点
-	// 3.有多个节点
 	if (*ppList == NULL)
 	{
 		return;
@@ -109,11 +106,6 @@ SListNode* SListFind(SListNode* pList, SLTDataType x)
 
 void SListInsertAfter(SListNode* pos, SLTDataType x)
 {
-	/*SListNode* newnode = BuySListNode(x);
-	SListNode* next = pos->next;
-	pos->next = newnode;
-	newnode->next = next;*/
-
 	SListNode* newnode = BuySListNode(x);
 	pos->next = newnode;
 	newnode->next = pos->next;
