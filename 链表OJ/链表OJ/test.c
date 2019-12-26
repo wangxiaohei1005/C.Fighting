@@ -177,3 +177,30 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 	}
 	return head;
 }
+if (pHead == NULL || pHead->next == NULL)
+return pHead;
+
+ListNode* cur = pHead;
+ListNode* next = cur->next;
+ListNode* newHead, *newTail;
+newHead = newTail = (ListNode*)malloc(sizeof(ListNode));
+while (next)
+{
+	if (cur->val == next->val)
+	{
+		while (next && next->val == cur->val)
+		{
+			next = next->next;
+		}
+	}
+	else
+	{
+		newTail->next = cur;
+		newTail = cur;
+	}
+
+	cur = next;
+	if (cur)
+		next = cur->next;
+}
+return newHead->next
