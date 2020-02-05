@@ -246,115 +246,132 @@
 //	}
 //}
 
-void reverse(int* nums, int begin, int end)
+//void reverse(int* nums, int begin, int end)
+//{
+//	while (begin < end)
+//	{
+//		int tmp = nums[begin];
+//		nums[begin] = nums[end];
+//		nums[end] = tmp;
+//		++begin;
+//		--end;
+//	}
+//}
+//int* addToArrayForm(int* A, int ASize, int K, int* returnSize){
+//	int* addRet = (int*)malloc(10001 * sizeof(int));
+//	int reti = 0;
+//	int ai = ASize - 1;
+//	int next = 0; // 进位值
+//	while (ai >= 0 || K > 0)
+//	{
+//		int x1 = 0;
+//		if (ai >= 0)
+//		{
+//			x1 = A[ai];
+//			--ai;
+//		}
+//
+//		int x2 = 0;
+//		if (K > 0)
+//		{
+//			x2 = K % 10;
+//			K /= 10;
+//		}
+//
+//		int ret = x1 + x2 + next;
+//		if (ret > 9)
+//		{
+//			ret %= 10;
+//			next = 1;
+//		}
+//		else
+//		{
+//			next = 0;
+//		}
+//		addRet[reti++] = ret;
+//	}
+//
+//	if (next == 1)
+//	{
+//		addRet[reti++] = 1;
+//	}
+//
+//	reverse(addRet, 0, reti - 1);
+//	*returnSize = reti;
+//
+//	return addRet;
+//}
+//void reverse(int* nums, int begin, int end)
+//{
+//	while (begin < end)
+//	{
+//		int tmp = nums[begin];
+//		nums[begin] = nums[end];
+//		nums[end] = tmp;
+//		++begin;
+//		--end;
+//	}
+//}
+//
+//void rotate(int* nums, int numsSize, int k){
+//	if (k > numsSize)
+//	{
+//		k %= numsSize;
+//	}
+//
+//	reverse(nums, 0, numsSize - 1);
+//	reverse(nums, 0, k - 1);
+//	reverse(nums, k, numsSize - 1);
+//}
+//void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+//	void reverse(int* nums, int begin, int end)
+//	{
+//		while (begin < end)
+//		{
+//			int tmp = nums[begin];
+//			nums[begin] = nums[end];
+//			nums[end] = tmp;
+//
+//			++begin;
+//			--end;
+//		}
+//	}
+//
+//	int end1 = m - 1;
+//	int end2 = n - 1;
+//	int end = m + n - 1;
+//	while (end1 >= 0 && end2 >= 0)
+//	{
+//		if (nums1[end1] > nums2[end2])
+//		{
+//			nums1[end--] = nums1[end1--];
+//		}
+//		else
+//		{
+//			nums1[end--] = nums2[end2--];
+//		}
+//	}
+//
+//	while (end2 >= 0)
+//	{
+//		nums1[end--] = nums2[end2--];
+//
+//	}
+//}
+
+int main()
 {
-	while (begin < end)
+	int n = 0;
+	scanf("%d", n);
+	int f1 = 0,f2 = 1;
+	int f3;
+	while (f2 < n)
 	{
-		int tmp = nums[begin];
-		nums[begin] = nums[end];
-		nums[end] = tmp;
-		++begin;
-		--end;
-	}
-}
-int* addToArrayForm(int* A, int ASize, int K, int* returnSize){
-	int* addRet = (int*)malloc(10001 * sizeof(int));
-	int reti = 0;
-	int ai = ASize - 1;
-	int next = 0; // 进位值
-	while (ai >= 0 || K > 0)
-	{
-		int x1 = 0;
-		if (ai >= 0)
-		{
-			x1 = A[ai];
-			--ai;
-		}
+		f3 = f2 + f1;
+		f1 = f2;
+		f2 = f3;
 
-		int x2 = 0;
-		if (K > 0)
-		{
-			x2 = K % 10;
-			K /= 10;
-		}
-
-		int ret = x1 + x2 + next;
-		if (ret > 9)
-		{
-			ret %= 10;
-			next = 1;
-		}
-		else
-		{
-			next = 0;
-		}
-		addRet[reti++] = ret;
 	}
 
-	if (next == 1)
-	{
-		addRet[reti++] = 1;
-	}
-
-	reverse(addRet, 0, reti - 1);
-	*returnSize = reti;
-
-	return addRet;
-}
-void reverse(int* nums, int begin, int end)
-{
-	while (begin < end)
-	{
-		int tmp = nums[begin];
-		nums[begin] = nums[end];
-		nums[end] = tmp;
-		++begin;
-		--end;
-	}
-}
-
-void rotate(int* nums, int numsSize, int k){
-	if (k > numsSize)
-	{
-		k %= numsSize;
-	}
-
-	reverse(nums, 0, numsSize - 1);
-	reverse(nums, 0, k - 1);
-	reverse(nums, k, numsSize - 1);
-}
-void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
-	void reverse(int* nums, int begin, int end)
-	{
-		while (begin < end)
-		{
-			int tmp = nums[begin];
-			nums[begin] = nums[end];
-			nums[end] = tmp;
-
-			++begin;
-			--end;
-		}
-	}
-
-	int end1 = m - 1;
-	int end2 = n - 1;
-	int end = m + n - 1;
-	while (end1 >= 0 && end2 >= 0)
-	{
-		if (nums1[end1] > nums2[end2])
-		{
-			nums1[end--] = nums1[end1--];
-		}
-		else
-		{
-			nums1[end--] = nums2[end2--];
-		}
-	}
-
-	while (end2 >= 0)
-	{
-		nums1[end--] = nums2[end2--];
-
-	}
+	return 0;
 }
