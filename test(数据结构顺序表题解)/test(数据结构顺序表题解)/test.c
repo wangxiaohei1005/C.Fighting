@@ -359,22 +359,31 @@
 //	}
 //}
 
-/*int main()
-{
-	int n = 0;
-	scanf("%d", n);
-	int f1 = 0,f2 = 1;
-	int f3;
-	while (f2 < n)
-	{
-		f3 = f2 + f1;
-		f1 = f2;
-		f2 = f3;
-
-	}
-
-	return 0;
-}*/
+//int main()//求出一个数距离最近的菲波那切数的步数
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int f1 = 0,f2 = 1;
+//	int f3 = 0;
+//	while (f2 < n)
+//	{
+//		f3 = f2 + f1;
+//		f1 = f2;
+//		f2 = f3;
+//	}
+//	int x1 = n - f1;
+//	int x2 = n - f2;
+//	if (x2 < x1)
+//	{
+//		printf("%d", x2);
+//	}
+//	else
+//	{
+//		printf("%d", x1);
+//	}
+//
+//	return 0;
+//}
 
 /* 
 char  signed char    
@@ -386,3 +395,18 @@ int b = -20;
     反码：11111111 11111111 11111111 11101011
 	补码：11111111 11111111 11111111 11101100
 */
+
+//void Func2(int N)
+//{
+//	int count = 0;
+//	for (int k = 0; k < 2 * N; ++k)
+//	{
+//		++count;
+//	}
+//}
+//int M = 10;
+//while (M--)
+//{
+//	++count;
+//}
+//printf("%d\n", count);
