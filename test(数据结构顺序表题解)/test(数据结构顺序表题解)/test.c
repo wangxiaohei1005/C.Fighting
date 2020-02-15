@@ -410,3 +410,57 @@ int b = -20;
 //	++count;
 //}
 //printf("%d\n", count);
+
+long long Fibonacci(size_t N)
+{
+	return N < 2 ? N : Fibonacci(N - 1) + Fibonacci(N - 2);
+}
+//int main()
+//{
+//	printf("%d\n", Fibonacci(50));
+//}//递归中斐波那的时间复杂度为2^N，因此工作效率较低
+
+//二分查找
+int DoubleSearch(int* a, int n, int x)
+{
+	assert(a);
+	int begin = 0;
+	int end = n - 1;
+	while (begin < end)
+	{
+		int mid = begin + ((end - begin) >> 1);
+		if (a[mid] < x)
+		{
+			begin = mid + 1;
+		}
+		else if (a[mid] > x)
+		{
+			end = mid;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return -1;
+}
+
+//顺序表的静态存储
+#define N 100
+typedef int SLDataType;
+
+typedef struct SeqList
+{
+	SLDataType array[N];//定长数组
+	size_t size;//有效数据的长度
+}SeqList;
+
+//顺序表的动态存储
+typedef struct SeqList
+{
+	SLDataType* array;//指向动态开辟的数组
+	size_t size;//有效数据个数
+	size_t capicity;//容量空间的大小
+}Seqlist;
+
+
