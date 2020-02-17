@@ -1,206 +1,236 @@
-﻿struct ListNode* removeElements(struct ListNode* head, int val){
-	if (!head)
-		return head;
-	head->next  = removeElements(head->next, val);
-	return head->val  == val  ? head->next  : head;
-}
-/**
- * Definition for singly-linked list.
-  * struct ListNode {
-   *     int val;
-    *     struct ListNode *next;
-	 * };
-	  */
+﻿//struct ListNode* removeElements(struct ListNode* head, int val){
+//	if (!head)
+//		return head;
+//	head->next  = removeElements(head->next, val);
+//	return head->val  == val  ? head->next  : head;
+//}
+///**
+// * Definition for singly-linked list.
+//  * struct ListNode {
+//   *     int val;
+//    *     struct ListNode *next;
+//	 * };
+//	  */
+//
+//typedef struct ListNode Node;
+//struct ListNode* reverseList(struct ListNode* head){
+//	if (head  == NULL  || head ->next  == NULL)
+//		return head;
+//	Node* n1, *n2, *n3;
+//	n1  = NULL;
+//	n2  = head;
+//	n3  = n2 ->next;
+//	while (n2 )
+//	{
+//		n2 ->next  = n1;
+//		n1  = n2;
+//		n2  = n3;
+//		if (n3)
+//			n3  = n3 ->next;
+//	}
+//
+//	return n1;
+//}
+///**
+// * Definition for singly-linked list.
+//  * struct ListNode {
+//   *     int val;
+//    *     struct ListNode *next;
+//	 * };
+//	  */
+//
+//typedef struct ListNode Node;
+//struct ListNode* reverseList(struct ListNode* head){
+//	   /* if(head == NULL || head ->next == NULL)
+//	           return head;
+//			       Node* n1, *n2, *n3;
+//				       n1 = NULL;
+//					      n2 = head;
+//						      n3 = n2 -> next;
+//							      while( n2 )
+//								      {
+//									          n2 -> next = n1;
+//											          n1 = n2;
+//													          n2 = n3;
+//															          if(n3)
+//																	              n3 = n3 -> next;
+//																				      }
+//
+//																					          return n1;   */
+//	Node* cur  = head;
+//	Node* newhead  = NULL;
+//	while (cur)
+//	{
+//		Node* next  = cur ->next;
+//		cur ->next  = newhead;
+//		newhead  = cur;
+//		cur  = next;
+//	}
+//	return newhead;
+//}
+///*
+//struct ListNode {
+//int val;
+//struct ListNode *next;
+//ListNode(int x) :
+//val(x), next(NULL) {
+//}
+//};*/
+//typedef struct ListNode Node;
+//class Solution {
+//public:
+//	ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+//		Node* fast = pListHead;
+//		Node* slow = pListHead;
+//		while (k--)
+//		{
+//			if (fast == NULL)
+//				return NULL;
+//			fast = fast->next;
+//		}
+//		while (fast)
+//		{
+//			fast = fast->next;
+//			slow = slow->next;
+//		}
+//		return slow;
+//	}
+//};
+///**
+// * Definition for singly-linked list.
+//  * struct ListNode {
+//   *     int val;
+//    *     struct ListNode *next;
+//	 * };
+//	  */
+//
+//typedef struct ListNode Node;
+//struct ListNode* middleNode(struct ListNode* head){
+//
+//	Node* slow  = head;
+//	Node* fast  = head;
+//	while (fast  != NULL  && (fast->next  != NULL))
+//	{
+//		slow   = slow ->next;
+//		fast   = fast ->next ->next;
+//	}
+//	return slow;
+//}
+///**
+// * Definition for singly-linked list.
+//  * struct ListNode {
+//   *     int val;
+//    *     struct ListNode *next;
+//	 * };
+//	  */
+//
+//typedef struct ListNode Node;
+//struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
+//	if (l1  == NULL)
+//	{
+//		return l2;
+//	}
+//	if (l2  == NULL)
+//	{
+//		return l1;
+//	}
+//	Node* head  = NULL;
+//	Node* tail  = NULL;
+//	while (l1 && l2)
+//	{
+//		if (l1 ->val < l2 ->val)
+//		{
+//			if (tail  == NULL)
+//			{
+//				head  = tail  = l1;
+//			}
+//			else
+//			{
+//				tail ->next  = l1;
+//				tail  = l1;
+//			}
+//			l1  = l1 ->next;
+//		}
+//		else
+//		{
+//			if (tail  == NULL)
+//			{
+//				head  = tail  = l2;
+//				tail  = l2;
+//			}
+//
+//			else
+//			{
+//				tail ->next  = l2;
+//				tail  = l2;
+//			}
+//			l2  = l2 ->next;
+//		}
+//	}
+//	if (l1)
+//	{
+//		tail ->next  = l1;
+//	}
+//	if (l2)
+//	{
+//		tail ->next  = l2;
+//	}
+//	return head;
+//}
+//if (pHead == NULL || pHead->next == NULL)
+//return pHead;
+//
+//ListNode* cur = pHead;
+//ListNode* next = cur->next;
+//ListNode* newHead, *newTail;
+//newHead = newTail = (ListNode*)malloc(sizeof(ListNode));
+//while (next)
+//{
+//	if (cur->val == next->val)
+//	{
+//		while (next && next->val == cur->val)
+//		{
+//			next = next->next;
+//		}
+//	}
+//	else
+//	{
+//		newTail->next = cur;
+//		newTail = cur;
+//	}
+//
+//	cur = next;
+//	if (cur)
+//		next = cur->next;
+//}
+//return newHead->next
 
-typedef struct ListNode Node;
-struct ListNode* reverseList(struct ListNode* head){
-	if (head  == NULL  || head ->next  == NULL)
-		return head;
-	Node* n1, *n2, *n3;
-	n1  = NULL;
-	n2  = head;
-	n3  = n2 ->next;
-	while (n2 )
-	{
-		n2 ->next  = n1;
-		n1  = n2;
-		n2  = n3;
-		if (n3)
-			n3  = n3 ->next;
-	}
-
-	return n1;
-}
-/**
- * Definition for singly-linked list.
-  * struct ListNode {
-   *     int val;
-    *     struct ListNode *next;
-	 * };
-	  */
-
-typedef struct ListNode Node;
-struct ListNode* reverseList(struct ListNode* head){
-	   /* if(head == NULL || head ->next == NULL)
-	           return head;
-			       Node* n1, *n2, *n3;
-				       n1 = NULL;
-					      n2 = head;
-						      n3 = n2 -> next;
-							      while( n2 )
-								      {
-									          n2 -> next = n1;
-											          n1 = n2;
-													          n2 = n3;
-															          if(n3)
-																	              n3 = n3 -> next;
-																				      }
-
-																					          return n1;   */
-	Node* cur  = head;
-	Node* newhead  = NULL;
-	while (cur)
-	{
-		Node* next  = cur ->next;
-		cur ->next  = newhead;
-		newhead  = cur;
-		cur  = next;
-	}
-	return newhead;
-}
-/*
-struct ListNode {
-int val;
-struct ListNode *next;
-ListNode(int x) :
-val(x), next(NULL) {
-}
-};*/
-typedef struct ListNode Node;
-class Solution {
-public:
-	ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
-		Node* fast = pListHead;
-		Node* slow = pListHead;
-		while (k--)
-		{
-			if (fast == NULL)
-				return NULL;
-			fast = fast->next;
-		}
-		while (fast)
-		{
-			fast = fast->next;
-			slow = slow->next;
-		}
-		return slow;
-	}
-};
-/**
- * Definition for singly-linked list.
-  * struct ListNode {
-   *     int val;
-    *     struct ListNode *next;
-	 * };
-	  */
-
-typedef struct ListNode Node;
-struct ListNode* middleNode(struct ListNode* head){
-
-	Node* slow  = head;
-	Node* fast  = head;
-	while (fast  != NULL  && (fast->next  != NULL))
-	{
-		slow   = slow ->next;
-		fast   = fast ->next ->next;
-	}
-	return slow;
-}
-/**
- * Definition for singly-linked list.
-  * struct ListNode {
-   *     int val;
-    *     struct ListNode *next;
-	 * };
-	  */
-
-typedef struct ListNode Node;
-struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
-	if (l1  == NULL)
-	{
-		return l2;
-	}
-	if (l2  == NULL)
-	{
-		return l1;
-	}
-	Node* head  = NULL;
-	Node* tail  = NULL;
-	while (l1 && l2)
-	{
-		if (l1 ->val < l2 ->val)
-		{
-			if (tail  == NULL)
-			{
-				head  = tail  = l1;
-			}
-			else
-			{
-				tail ->next  = l1;
-				tail  = l1;
-			}
-			l1  = l1 ->next;
-		}
-		else
-		{
-			if (tail  == NULL)
-			{
-				head  = tail  = l2;
-				tail  = l2;
-			}
-
-			else
-			{
-				tail ->next  = l2;
-				tail  = l2;
-			}
-			l2  = l2 ->next;
-		}
-	}
-	if (l1)
-	{
-		tail ->next  = l1;
-	}
-	if (l2)
-	{
-		tail ->next  = l2;
-	}
-	return head;
-}
-if (pHead == NULL || pHead->next == NULL)
-return pHead;
-
-ListNode* cur = pHead;
-ListNode* next = cur->next;
-ListNode* newHead, *newTail;
-newHead = newTail = (ListNode*)malloc(sizeof(ListNode));
-while (next)
+//顺序表 OJ
+int removeElement(int* nums, int numsSize, int val)
 {
-	if (cur->val == next->val)
+	int number = 0;
+	for (int i = 0; i < numsSize; i++)
 	{
-		while (next && next->val == cur->val)
+		if (nums[i] != val)
 		{
-			next = next->next;
+			nums[i] = nums[i + 1];
+			number++;
 		}
 	}
-	else
-	{
-		newTail->next = cur;
-		newTail = cur;
-	}
-
-	cur = next;
-	if (cur)
-		next = cur->next;
+	return number;
 }
-return newHead->next
+
+int removeDuplicates(int *nums, int numsSize){
+	if (numsSize == 0 || numsSize == 1)
+		return numsSize;
+	int k = 1;
+	for (int i = 1; i < numsSize; i++)
+	{
+		if (nums[i] != nums[i - 1])
+		{
+			nums[k] = nums[i];
+			++k;
+		}
+	}
+	return k;
+}
