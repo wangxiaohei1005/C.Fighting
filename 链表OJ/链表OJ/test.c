@@ -234,3 +234,72 @@ int removeDuplicates(int *nums, int numsSize){
 	}
 	return k;
 }
+/*void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n)
+{
+	void reverse(int* nums, int begin, int end)
+	{
+		while (begin < end)
+		{
+			int tmp = nums[begin];
+			nums[begin] = nums[end];
+			nums[end] = emp;
+			++begin;
+			--end;
+		}
+	}
+
+	int end1 = m;
+	int end2 = n;
+	int ned = m + n - 1;
+	while ( end1 >= 0 && end2 >= 0)
+	{
+		if (nums[end1] > nums[end2])
+		{
+			nums1[end--] = nums[end1--];
+		}
+		else
+		{
+			nums1[end--] = nums[end2--];
+		}
+	}
+	while (end2 >= 0)
+	{
+		nums1[end--] = nums[end2--];
+	}
+}*/
+
+void reverse(int* nums, int begin, int end)
+{
+	while (begin < end)
+	{
+		int tmp = nums[begin];
+		nums[begin] = nums[end];
+		nums[end] = tmp;
+		++begin;
+		--end;
+	}
+}
+
+void rotate(int* nums, int numsSize, int k){
+	if (k > numsSize)
+	{
+		k %= numsSize;
+	}
+
+	reverse(nums, 0, numsSize - 1);
+	reverse(nums, 0, k - 1);
+	reverse(nums, k, numsSize - 1);
+}//程序反转  对数组进行反向排序
+
+int* addToArrayForm(int* A, int ASize, int K, int* returnSize)
+{
+
+}
+
+int mian()
+{
+	int a[] = { 9,9 };
+	int k[] = { 1, 1 };
+
+	return 0;
+}
