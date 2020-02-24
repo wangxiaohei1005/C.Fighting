@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6EC859BE-D984-489D-AA36-85D0D50D4FD5}</ProjectGuid>
-    <RootNamespace>链表接口实现（练习）</RootNamespace>
+    <ProjectGuid>{02898BBD-8787-4524-AEC4-86B9E5E135A4}</ProjectGuid>
+    <RootNamespace>日常题解训练</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -47,6 +47,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,11 +65,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Slist.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="sList.c" />
-    <ClCompile Include="test.c" />
+    <ClCompile Include="exam.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
