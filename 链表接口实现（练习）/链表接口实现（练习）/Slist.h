@@ -1,4 +1,6 @@
 #pragma once
+#include <stdio.h>
+#include <malloc.h>
 
 typedef int SLTDataType;
 typedef struct SList
@@ -8,4 +10,6 @@ typedef struct SList
 
 }SListNode;
 
-void SListPrint(SListNode* pList);
+void SListPrint(SListNode* pList);//¥Ú”°
+void SListPushBack(SListNode* pList, SLTDataType x);//Œ≤≤Â
+void SListPushFront(SListNode* pList, SLTDataType x);//Õ∑≤Â
