@@ -13,3 +13,4 @@ Heap* HeapCreate(HpDataType* a, size_t n);
 void HeapPush(Heap* hp, HpDataType x);
 void HeapPop(Heap* hp);
 HpDataType HeapTop(Heap* hp);
+void HeapPrint(Heap* hp);

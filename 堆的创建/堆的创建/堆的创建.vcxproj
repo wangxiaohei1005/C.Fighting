@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Heap.c" />
+    <ClCompile Include="test.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{59B419AB-15E0-4318-B5DE-6DA638FE3E4D}</ProjectGuid>
