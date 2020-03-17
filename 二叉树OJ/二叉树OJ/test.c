@@ -59,3 +59,27 @@ bool isSameTree(struct TreeNode* p, struct TreeNode* q)
 		return false;
 }
 
+TreeNode* TreeFind(TreeNode* root, char x)
+{
+	int i = 0;
+	if (root == NULL)
+		return NULL;
+	else
+	{
+		if (root->val == x)
+		{
+			return root;
+		}
+		else
+		{
+			int tmp = TreeFind(root->left, x);
+			if (tmp != x)
+			{
+				TreeFind(root->right, x);
+			}
+			return tmp;
+		}
+		return NULL;
+	}
+}
+
