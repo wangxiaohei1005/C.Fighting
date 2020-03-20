@@ -1,7 +1,6 @@
 #include "Heap.h"
 
 // 小堆 
-// ->条件：左右子树都是堆
 void Swap(int* a, int* b)
 {
 	int x = *a;
@@ -9,22 +8,16 @@ void Swap(int* a, int* b)
 	*b = x;
 }
 
-// 小堆 
-// ->条件：左右子树都是堆
 void AdjustDown(HpDataType* a, size_t n, int root)
 {
 	int parent = root;
 	int child = parent * 2 + 1;
 	while (child < n)
 	{
-		// 找出小的那个孩纸
 		if (child + 1 < n && a[child + 1] < a[child])
 		{
 			++child;
 		}
-
-		// 1、孩纸比父亲小，则交换，继续往下调
-		// 2、孩纸比父亲大，则终止调整
 		if (a[parent] > a[child])
 		{
 			Swap(&a[child], &a[parent]);
@@ -46,7 +39,7 @@ void HeapCreate(Heap* hp, HpDataType* a, size_t n)
 	hp->_size = n;
 	hp->_capacity = n;
 
-	// 建小堆
+	// 小堆
 	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
 	{
 		AdjustDown(hp->_a, hp->_size, i);
@@ -63,7 +56,6 @@ void HeapDestory(Heap* hp)
 void AdjustUp(int* a, int child)
 {
 	int parent = (child - 1) / 2;
-	//while (parent >= 0) // 没起作用，巧合借助break跳出的
 	while (child > 0)
 	{
 		if (a[child] < a[parent])
@@ -82,7 +74,6 @@ void AdjustUp(int* a, int child)
 
 void HeapPush(Heap* hp, HpDataType x)
 {
-	// 空间不够-》增容
 	if (hp->_size == hp->_capacity)
 	{
 		size_t newcapacity = hp->_capacity * 2;
@@ -93,7 +84,6 @@ void HeapPush(Heap* hp, HpDataType x)
 	hp->_a[hp->_size] = x;
 	hp->_size++;
 
-	// 向上调整，调成堆
 	AdjustUp(hp->_a, hp->_size - 1);
 }
 
@@ -124,16 +114,15 @@ void HeapPrint(Heap* hp)
 	printf("\n");
 }
 
-// 最大十个数
+
 void PrintTopK(int* a, int n, int k)
 {
-	// k个数的小堆
+	// 小堆
 	Heap hp;
 	HeapCreate(&hp, a, k);
 
 	for (int i = k; i < n; ++i)
 	{
-		// 比堆顶的数据要大，就替代它
 		if (HeapTop(&hp) < a[i])
 		{
 			HeapPop(&hp);
