@@ -4,5 +4,10 @@
 int main()
 {
 	TestInsertSort();
+	TestBubbleSort();
+	TestHeapSort();
+	TestQuickSort();
+	TestSelecSort();
+	TestShellSort();
 	return 0;
 }
