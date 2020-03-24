@@ -3,11 +3,11 @@
 
 int main()
 {
-	TestInsertSort();
-	TestBubbleSort();
+	//TestInsertSort();
+	//TestBubbleSort();
 	TestHeapSort();
-	TestQuickSort();
-	TestSelecSort();
-	TestShellSort();
+	//TestQuickSort();
+	//TestSelecSort();
+	//TestShellSort();
 	return 0;
 }
