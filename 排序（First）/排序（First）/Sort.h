@@ -277,3 +277,30 @@ void TestQuickSort()
 	QuickSort(a, 0,sizeof(a) / sizeof(int));
 	PrintSort(a, sizeof(a) / sizeof(int));
 }
+
+int GetMidIndex(int* a, int begin, int end)
+{
+	int mid = (begin + end) >> 1;
+	if (a[begin] < a[mid])
+	{
+		if (a[mid] < a[end])
+		{
+			return mid;
+		}
+		else if (a[begin] < a[end])
+		{
+			return end;
+		}
+		else
+			return begin;
+	}
+	else
+	{
+		if (a[mid] < a[end])
+			return mid;
+		else if (a[begin] < a[mid])
+			return begin;
+		else
+			return end;
+	}
+}
