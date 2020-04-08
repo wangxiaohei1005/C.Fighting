@@ -51,35 +51,37 @@
 //	return BinaryTreeLevelKSizze(root->left, k - 1) + BinaryTreeLevelKSizze(root->right, k - 1);
 //}
 
-bool isSameTree(struct TreeNode* p, struct TreeNode* q)
-{
-	if (p == NULL && q == NULL)
-		return true;
-	if (p != NULL || q != NULL)
-		return false;
-}
+//bool isSameTree(struct TreeNode* p, struct TreeNode* q)
+//{
+//	if (p == NULL && q == NULL)
+//		return true;
+//	if (p != NULL || q != NULL)
+//		return false;
+//}
+//
+//TreeNode* TreeFind(TreeNode* root, char x)
+//{
+//	int i = 0;
+//	if (root == NULL)
+//		return NULL;
+//	else
+//	{
+//		if (root->val == x)
+//		{
+//			return root;
+//		}
+//		else
+//		{
+//			int tmp = TreeFind(root->left, x);
+//			if (tmp != x)
+//			{
+//				TreeFind(root->right, x);
+//			}
+//			return tmp;
+//		}
+//		return NULL;
+//	}
+//}
+//
 
-TreeNode* TreeFind(TreeNode* root, char x)
-{
-	int i = 0;
-	if (root == NULL)
-		return NULL;
-	else
-	{
-		if (root->val == x)
-		{
-			return root;
-		}
-		else
-		{
-			int tmp = TreeFind(root->left, x);
-			if (tmp != x)
-			{
-				TreeFind(root->right, x);
-			}
-			return tmp;
-		}
-		return NULL;
-	}
-}
 
