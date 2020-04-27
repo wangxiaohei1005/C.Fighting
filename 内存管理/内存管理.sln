@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "内存管理", "内存管理\内存管理.vcxproj", "{9348FF3B-7746-44F0-81F1-F31EC7B36284}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9348FF3B-7746-44F0-81F1-F31EC7B36284}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9348FF3B-7746-44F0-81F1-F31EC7B36284}.Debug|Win32.Build.0 = Debug|Win32
+		{9348FF3B-7746-44F0-81F1-F31EC7B36284}.Release|Win32.ActiveCfg = Release|Win32
+		{9348FF3B-7746-44F0-81F1-F31EC7B36284}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
