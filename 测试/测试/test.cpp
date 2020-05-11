@@ -107,28 +107,53 @@ using namespace std;
 //		return number;
 //	}
 //};
-int main()
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		if (n < 11)
+//		{
+//			cout << -1;
+//		}
+//		else
+//		{
+//			for (int i = 11; i < n; i += 10)
+//			{
+//				for (int j = 2; (j * j) < i; j++)
+//				{
+//					if (i%j == 0)
+//						break;
+//					else if (j * j > i)
+//						cout << ' ' << i;
+//				}
+//			}
+//		}
+//		cout << endl;
+//	}
+//}
+
+void Insert(size_t pos, const char* str)
 {
-	int n;
-	while (cin >> n)
+	assert(pos < _size);
+
+	//如果空间不够就增容
+	size_t len = strlen(str);
+	if (_size + len > capacity);
 	{
-		if (n < 11)
-		{
-			cout << -1;
-		}
-		else
-		{
-			for (int i = 11; i < n; i += 10)
-			{
-				for (int j = 2; (j * j) < i; j++)
-				{
-					if (i%j == 0)
-						break;
-					else if (j * j > i)
-						cout << ' ' << i;
-				}
-			}
-		}
-		cout << endl;
+		reserve(_size + len);
 	}
+
+	//挪动数据
+	int end = _size;
+	while (end >= pos)
+	{
+		_str[len + end] = _str[end];
+		--end;
+	}
+
+
+	strncpy(_str + pos, str, len);
+
+	size
 }
