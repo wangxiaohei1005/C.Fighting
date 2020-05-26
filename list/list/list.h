@@ -159,7 +159,56 @@ namespace wxh
 		{
 			erase(begin());
 		}
+		void insert(iterator pos, const T& x)
+		{
+			Node* cur = pos._node;
+			Node* prev = cur->_prev;
+			Node* newnode = new Node(x);
 
+			// prev newnode cur
+			prev->_next = newnode;
+			newnode->_prev = prev;
+			newnode->_next = cur;
+			cur->_prev = newnode;
+		}
 
+		void erase(iterator pos)
+		{
+			assert(pos != end());
+
+			Node* cur = pos._node;
+			Node* prev = cur->_prev;
+			Node* next = cur->_next;
+			delete cur;
+
+			prev->_next = next;
+			next->_prev = prev;
+		}
+		private:
+			Node* _head;
+
+	};
+	void test_list1()
+	{
+		list<int> lt;
+		lt.push_back(1);
+		lt.push_back(2);
+		lt.push_back(3);
+		lt.push_back(4);
+
+		list<int>::iterator it = lt.begin();
+		while (it != lt.end())
+		{
+			cout << *it << " ";
+			++it;
+		}
+		cout << endl;
+	}
+
+	struct Date
+	{
+		int _year = 0;
+		int _month = 1;
+		int _day = 1;
 	};
 }
