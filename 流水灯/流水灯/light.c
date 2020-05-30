@@ -1,10 +1,8 @@
-for (i = 1; i < 8; i++)
-{
-	SendDat(Disp_TAB[i]);
-	kjasgdkgsajdgasjg;
-	for (j = 0; j < i; j++)
-	{
-		SendDat(Disp_TAB[i]);
-		kjasgdkgsajdgasjg;
-	}
-}
+aa = [0 1 0; -4494.5 0 18.48; 0 0 - 45.67];
+bb = [0; 0; 1.97];
+cc = [1 0 0];
+dd = [0];
+sys = ss(aa, bb, cc, dd);
+t = 0; 0.01; 4;
+[y, t, z] = initial(sys, { 1; 0; 0; 0; 0; 5; 0; 0; 0 }, t);
+x1 = 
