@@ -247,23 +247,153 @@ int main()
 //	printf("%d", cnt);
 //}
 //6.4.1
-#include <iostream>
+//#include <iostream>
+//
+//using namespace std;
+//
+//int main()
+//{
+//	int m1, m2, m3, m4;
+//	cin >> m1 >> m2 >> m3 >> m4;
+//	int A = (m1 + m3) / 2;
+//	int B = (m2 + m4) / 2;
+//	int C = (m4 - m2) / 2;
+//	if (A - B == m1 && B - C == m2 && A + B == m3 && B + C == m4)
+//	{
+//		cout << A << " " << B << " " << C << " " << endl;
+//	}
+//	else
+//		cout << "NO" << endl;
+//	return 0;
+//}
 
-using namespace std;
+#include <stdio.h>
+//int main()
+//{
+//	int x = 1;
+//	do
+//	{
+//		printf("%2d", x++);
+//	} while (x--);
+//	return 0;
+//}
 
-int main()
+//int main()
+//{
+//	char a = 0, cj;
+//	while ((cj = getchar() != '\n'))
+//	{
+//		if (a % 2 != 0 && (cj >= 'a' && cj <= 'z'))
+//			cj = cj - 'a' + 'A';
+//		a++;
+//		putchar(cj);
+//	}
+//	printf("\n");
+//
+//	return 0;
+//
+//}
+//#include <iostream>
+//using namespace std;
+//int main()
+//{
+//	int m = 0123, n = 123;
+//	printf("%o %o\n", m, n);
+//	return 0;
+//}
+
+struct A
 {
-	int m1, m2, m3, m4;
-	cin >> m1 >> m2 >> m3 >> m4;
-	int A = (m1 + m3) / 2;
-	int B = (m2 + m4) / 2;
-	int C = (m4 - m2) / 2;
-	if (A - B == m1 && B - C == m2 && A + B == m3 && B + C == m4)
-	{
-		cout << A << " " << B << " " << C << " " << endl;
-	}
+	long A1;
+	short A2;
+	int A3;
+	int *A4;
+};
+//int main()
+//{
+//	int D = sizeof(struct A);
+//	printf("%d", D);
+//	return 0;
+//}
+
+int f(int n)
+{
+	if (n == 1)
+		return 1;
 	else
-		cout << "NO" << endl;
-	return 0;
+		return (f(n - 1) + n * n * n);
 }
 
+
+//int main()
+//{
+//	int s = f(3);
+//	cout << s << endl;
+//	return 0;
+//}
+
+//char fun(char x, char y)
+//{
+//	if (x < y)
+//		return x;
+//	return y;
+//}
+//
+//int main()
+//{
+//
+//	int a = '1', b = '1', c = '2';
+//	cout << fun(fun(a, b), fun(b, c)) << endl;
+//	return 0;
+//}
+
+//6.6.1
+//#include <string>
+//#include <algorithm> 
+//#include <iostream>
+//using namespace std;
+//int a[100][100] = {0};
+//int main()
+//{
+//	int W, H;
+//	cin >> W >> H;
+//	int i, j, max;
+//	for (i = 0; i < W; ++i)
+//	{
+//		for (j = 0; j < H; ++j)
+//		{
+//			if (a[i][j] == 0)
+//			{
+//				max++;
+//				if ((i + 2) < W)
+//					a[i + 2][j] = -1;
+//				if ((j + 2) < H)
+//					a[i][j + 2] = -1;
+//			}
+//		}
+//	}
+//	cout << max << endl;
+//	return 0;
+//}
+
+//6.6.2
+class Solution 
+{
+public:
+	int StrToInt(string str) 
+	{
+		int size = str.size(),s = 1;
+		long long tmp = 0;
+		if (!size)
+			return 0;
+		if (str[0] == '-')
+			s = -1;
+		for (int i = (str[0] == '-' || str[0] == '+') ? 1 : 0; i < size; ++i)
+		{
+			if (!('0' <= str[i] && str[i] <= '9'))
+				return 0;
+			tmp = (tmp << 1) + (tmp << 3) + (str[i] & 0xf);
+		}
+		return tmp * s;
+	}
+};
