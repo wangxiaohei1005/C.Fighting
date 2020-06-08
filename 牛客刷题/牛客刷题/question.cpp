@@ -302,13 +302,13 @@ int main()
 //	return 0;
 //}
 
-struct A
-{
-	long A1;
-	short A2;
-	int A3;
-	int *A4;
-};
+//struct A
+//{
+//	long A1;
+//	short A2;
+//	int A3;
+//	int *A4;
+//};
 //int main()
 //{
 //	int D = sizeof(struct A);
@@ -316,13 +316,13 @@ struct A
 //	return 0;
 //}
 
-int f(int n)
-{
-	if (n == 1)
-		return 1;
-	else
-		return (f(n - 1) + n * n * n);
-}
+//int f(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	else
+//		return (f(n - 1) + n * n * n);
+//}
 
 
 //int main()
@@ -377,23 +377,183 @@ int f(int n)
 //}
 
 //6.6.2
-class Solution 
+//class Solution 
+//{
+//public:
+//	int StrToInt(string str) 
+//	{
+//		int size = str.size(),s = 1;
+//		long long tmp = 0;
+//		if (!size)
+//			return 0;
+//		if (str[0] == '-')
+//			s = -1;
+//		for (int i = (str[0] == '-' || str[0] == '+') ? 1 : 0; i < size; ++i)
+//		{
+//			if (!('0' <= str[i] && str[i] <= '9'))
+//				return 0;
+//			tmp = (tmp << 1) + (tmp << 3) + (str[i] & 0xf);
+//		}
+//		return tmp * s;
+//	}
+//};
+
+#include <iostream>
+#include <string>
+using namespace std;
+//
+//class A
+//{
+//	friend long fun(A s)
+//	{
+//		if (s.x < 3)
+//		{
+//			return 1;
+//		}
+//		return s.x + fun(A(s.x - 1));
+//	}
+//public:
+//	A(long a)
+//	{
+//		x = a--;
+//	}
+//private:
+//	long x;
+//};
+//
+//
+//int main()
+//{
+//	int sum = 0;
+//	for (int i = 0; i < 5; i++)
+//	{
+//		sum += fun(A(i));
+//	}
+//	cout << sum << endl;
+//	return 0;
+//}
+
+#include <stdio.h>
+//int main()
+//{
+//	int a = 1, b = 2, c = 3, d = 0;
+//	if (a == 1 && b++ == 2)
+//		printf("%d, %d, %d\n", a, b, c);
+//	else
+//		printf("%d, %d, %d\n", a, b, c);
+//	return 0;
+//}
+
+//void main()
+//{
+//	int a = 1, b = 0, c = -1, d = 0;
+//	d = ++a || ++b && ++c;
+//	cout << d << endl;
+//	return;
+//}
+
+//class parent
+//{
+//	int i;
+//protected:
+//	int x;
+//public:
+//	parent()
+//	{
+//		x = 0; 
+//		i = 0;
+//	}
+//	void change()
+//	{
+//		x++; 
+//		i++;
+//	}
+//	void display();
+//};
+//
+//class son :public parent
+//{
+//public:
+//	void modify();
+//};
+//
+//void parent::display()
+//{
+//	cout << "x=" << endl;
+//}
+//
+//void son::modify()
+//{
+//	x++;
+//}
+//
+//int main()
+//{
+//	son A;
+//	parent B;
+//	A.display();
+//	A.change();
+//	A.modify();
+//	A.display();
+//	B.change();
+//	B.display();
+//}
+
+//template <class T> class BigNumber
+//{
+//	long n;
+//public:
+//	BigNumber (T i) :n(i)
+//	{}
+//	BigNumber operator+(BigNumber b)
+//	{
+//		return BigNumber(n + b.n);
+//	}
+//};
+
+//int main()
+//{
+//	int N, l, r, f0 = 0, f1 = 1, f;
+//	cin >> N;
+//	while (1)
+//	{
+//		f = f0 + f1;
+//		f0 = f1;
+//		f1 = f;
+//		if (f < N)
+//			l = N - f;
+//		else
+//		{
+//			r = f - N;
+//			break;
+//		}
+//	}
+//	cout << min(l, r) << endl;
+//	return 0;
+//}
+
+class Parentthesis
 {
 public:
-	int StrToInt(string str) 
+	bool chkParenthesis(string A, int n)
 	{
-		int size = str.size(),s = 1;
-		long long tmp = 0;
-		if (!size)
-			return 0;
-		if (str[0] == '-')
-			s = -1;
-		for (int i = (str[0] == '-' || str[0] == '+') ? 1 : 0; i < size; ++i)
+		if (n % 2 == 1)
+			return false;
+		stack<char> s1;
+		for (int i = 0; i < A.size(); i++)
 		{
-			if (!('0' <= str[i] && str[i] <= '9'))
-				return 0;
-			tmp = (tmp << 1) + (tmp << 3) + (str[i] & 0xf);
+			if (A[i] == '(')
+				s1.push(A[i]);
+			else if (A[i] == ')')
+			{
+				if (s1.empty())
+					return false;
+				s1.top();
+			}
+			else
+				return false;
 		}
-		return tmp * s;
+		if (s1.empty())
+			return true;
 	}
 };
