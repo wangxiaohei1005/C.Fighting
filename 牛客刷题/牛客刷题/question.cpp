@@ -532,28 +532,478 @@ using namespace std;
 //	return 0;
 //}
 
-class Parentthesis
+//class Parentthesis
+//{
+//public:
+//	bool chkParenthesis(string A, int n)
+//	{
+//		if (n % 2 == 1)
+//			return false;
+//		stack<char> s1;
+//		for (int i = 0; i < A.size(); i++)
+//		{
+//			if (A[i] == '(')
+//				s1.push(A[i]);
+//			else if (A[i] == ')')
+//			{
+//				if (s1.empty())
+//					return false;
+//				s1.top();
+//			}
+//			else
+//				return false;
+//		}
+//		if (s1.empty())
+//			return true;
+//	}
+//};
+
+//int main()
+//{
+//	int a[4] = { 1, 2, 3, 4 };
+//	int *ptr = (int*)(&a + 1);
+//	printf("%d", *(ptr - 1));
+//	return 0;
+//}
+
+//#include <iostream>
+//class cla
+//{
+//	static int n;
+//public:
+//	cla()
+//	{
+//		n++;
+//	}
+//	~cla()
+//	{
+//		n--;
+//	}
+//	static int get_n()
+//	{
+//		return n;
+//	}
+//};
+//
+//int cla::n = 0;
+//int main()
+//{
+//	cla *p = new cla;
+//	delete p;
+//	cout << "n = " << cla::get_n() << endl;
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//class A
+//{
+//public:
+//	A()
+//		:m_iVal(0)
+//	{
+//		test();
+//	}
+//	virtual void func()
+//	{
+//		std::cout << m_iVal << ' ';
+//	}
+//	void test()
+//	{
+//		func();
+//	}
+//public:
+//	int m_iVal;
+//};
+//
+//class B :public A
+//{
+//public:
+//	B()
+//	{
+//		test();
+//	}
+//	virtual void func()
+//	{
+//		++m_iVal;
+//		std::cout << m_iVal << ' ';
+//	}
+//};
+//
+//int main(int argc, char* argv[])
+//{
+//	A *p = new B;
+//	p->test();
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//int main()
+//{
+//	int n, i, j;
+//	int x = 0, y = 0;
+//	char a[100][100];
+//	cin >> n;
+//	for (i = 0; i < n; i++)
+//	{
+//		cin >> a[i];
+//	}
+//	for (i = 0; i < n; i++)
+//	{
+//		if (strlen(a[i]) > strlen(a[i + 1]))
+//		{
+//			x = 1;
+//			break;
+//		}
+//	}
+//	for (i = 0; i < n; i++)
+//	{
+//		if (strcmp(a[i], a[i + 1]) > 0)
+//		{
+//			y = 1;
+//			break;
+//		}
+//	}
+//	if (x == 1 && y == 0)
+//		cout << "lexicographically" << endl;
+//	else if (x == 0 && y == 1)
+//		cout << "lenngths" << endl;
+//	else if (x == 0 && y == 0)
+//		cout << "both" << endl;
+//	else
+//		cout << "none" << endl;
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int m, n, i;
+//	cin >> m >> n;
+//	for (i = m;; i++)
+//	{
+//		if (i %m == 0 && i%n == 0)
+//			break;
+//	}
+//	cout << i << endl;
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//using namespace std;
+//
+//int main()
+//{
+//	string in;
+//	while (cin >> in)
+//	{
+//		vector<bool> a(256, 0);
+//		string res = "";
+//		for (int i = 0; i < in.size(); ++i)
+//		{
+//			if (a[in[i]] == false)
+//			{
+//				a[in[i]] = true;
+//				res += in[i];
+//			}
+//		}
+//		cout << res << endl;
+//	}
+//	return 0;
+//}
+
+//class Finder 
+//{
+//public:
+//	int findElement(vector<int> A, int n, int x) 
+//	{
+//		int begin = 0, end = n - 1;
+//		int tmp;
+//		while (begin <= end)
+//		{
+//			tmp = (begin + end) / 2;
+//			if (A[tmp] == x)
+//			{
+//				return tmp;
+//			}
+//			else if (A[tmp] <= A[end])
+//			{
+//				if (A[tmp] < x && A[end] >= x)
+//				{
+//					begin = tmp + 1;
+//				}
+//				else
+//				{
+//					end = tmp - 1;
+//				}
+//			}
+//			else
+//			{
+//				if (A[tmp] > x && A[begin] <= x)
+//				{
+//					end = tmp - 1;
+//				}
+//				else
+//				{
+//					begin = tmp + 1;
+//				}
+//			}
+//		}
+//		return -1;
+//	}
+//};
+
+#include <iostream>
+using namespace std;
+//
+//class MyClass
+//{
+//
+//public:
+//	MyClass(int i = 0)
+//	{
+//		cout << 1;
+//	}
+//	MyClass(const MyClass&x)
+//	{
+//		cout << 2;
+//	}
+//	MyClass& operator=(const MyClass&x)
+//	{
+//		cout << 3;
+//		return *this;
+//	}
+//	~MyClass()
+//	{
+//		cout << 4;
+//	}
+//};
+//
+//int main()
+//{
+//	MyClass obj1(1), obj2(2), obj3(obj1);
+//	return 0;
+//}
+
+//class Test
+//{
+//public:
+//	int a;
+//	int b;
+//	virtual void fun()
+//	{}
+//	Test(int tmp1 = 0, int tmp2 = 0)
+//	{
+//		a = tmp1;
+//		b = tmp2;
+//	}
+//	int getA()
+//	{
+//		return a;
+//	}
+//	int getB()
+//	{
+//		return b;
+//	}
+//};
+//
+//int main()
+//{
+//	Test obj(5, 10);
+//	int* pInt = (int*)&obj;
+//	*(pInt + 0) = 100;
+//	*(pInt + 1) = 200;
+//	cout << "a = " << obj.getA() << endl;
+//	cout << "b = " << obj.getB() << endl;
+//	return 0;
+//}
+
+//void func(char **m)
+//{
+//	++m;
+//	cout << *m << endl;
+//}
+//
+//int main()
+//{
+//	static char *a[] = { "morning", "afternoon", "evening" };
+//	char **p;
+//	p = a;
+//	func(p);
+//	return 0;
+//}
+
+//class UnusualAdd 
+//{
+//public:
+//	int addAB(int A, int B)
+//	{
+//		if (A == 0)
+//		{
+//			return B;
+//		}
+//		if (B == 0)
+//		{
+//			return A;
+//		}
+//		int sum = A^B, SUM = (A^B) << 1;
+//		return addAB(sum, SUM);
+//	}
+//};
+
+//class UnusualAdd 
+//{
+//public: 
+//	int addAB(int A, int B)
+//	{        
+//		// write code here     
+//		if(B == 0)       
+//			return A;     
+//		int sum = A ^ B;  
+//		int flag = (A & B) << 1;       
+//		return addAB(sum,flag); 
+//	}
+//};
+
+//int main()
+//{
+//	int m, n;
+//	while (cin >> m)
+//	{
+//		cin >> n;
+//		int GoUp = 1;
+//		int GoDown = 1;
+//		for (int i = 0; i < n; i++)
+//		{
+//			GoUp *= (m + n) - i;
+//			GoDown *= i + 1;
+//		}
+//		cout << GoUp / GoDown << endl;
+//	}
+//}
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//class Board
+//{
+//public:
+//	bool checkWon(vector<vector<int> > board)
+//	{
+//		int bow = board.size();
+//		int i, j, sum;
+//		for (i = 0; i < bow; ++i)//ÅÐ¶ÏÐÐ
+//		{
+//			sum = 0;
+//			for (j = 0; j < bow; ++j)
+//			{
+//				sum += board[i][j];
+//			}
+//			if (bow == sum)
+//				return true;
+//		}
+//		for (i = 0; i < bow; ++i)//ÅÐ¶ÏÁÐ
+//		{
+//			sum = 0;
+//			for (j = 0; j < bow; ++j)
+//			{
+//				sum += board[j][i];
+//			}
+//			if (bow == sum)
+//				return true;
+//		}
+//
+//		sum = 0;
+//		for (i = 0; i < bow; ++i)
+//		{
+//			sum += board[i][i];
+//		}
+//		if (bow == sum)
+//			return true;
+//		sum = 0;
+//		for (i = 0; i < bow; ++i)
+//		{
+//			sum += board[j][j];
+//		}
+//		if (bow == sum)
+//			return true;
+//	}
+//};
+//
+//int main()
+//{
+//	Board b;
+//	int n;
+//	cin >> n;
+//	vector<vector<int>> a(n, vector<int>(n));
+//	for (int i = 0; i < n; ++i)
+//	{
+//		for (int j = 0; j < n; ++j)
+//		{
+//			cin >> a[i][j];
+//		}
+//	}
+//	if (b.checkWon(a))
+//	{
+//		cout << "win" << endl;
+//	}
+//	else
+//	{
+//		cout << "lose" << endl;
+//	}
+//
+//	return 0;
+//}
+
+//int fun(int n)
+//{
+//	if (n == 5)
+//		return 2;
+//	else
+//		return 2 * fun(n + 1);
+//}
+//
+//int main()
+//{
+//	int tmp = fun(2);
+//	cout << tmp;
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//class printer
+//{
+//public:
+//	printer(std::string name)
+//	{
+//		std::cout << name;
+//	}
+//};
+//class container
+//{
+//public:
+//	container() :b("b"), a("a")
+//	{}
+//	printer a;
+//	printer b;
+//};
+//int main()
+//{
+//	container c;
+//	return 0;
+//}
+int main()
 {
-public:
-	bool chkParenthesis(string A, int n)
-	{
-		if (n % 2 == 1)
-			return false;
-		stack<char> s1;
-		for (int i = 0; i < A.size(); i++)
-		{
-			if (A[i] == '(')
-				s1.push(A[i]);
-			else if (A[i] == ')')
-			{
-				if (s1.empty())
-					return false;
-				s1.top();
-			}
-			else
-				return false;
-		}
-		if (s1.empty())
-			return true;
-	}
-};
+	int I = 1;
+	if (I <= 0)
+		printf("*********\n");
+	else
+		printf("%%%%%%%%%\n");
+	return 0;
+}
