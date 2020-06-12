@@ -998,12 +998,63 @@ using namespace std;
 //	container c;
 //	return 0;
 //}
+//int main()
+//{
+//	int I = 1;
+//	if (I <= 0)
+//		printf("*********\n");
+//	else
+//		printf("%%%%%%%%%\n");
+//	return 0;
+//}
+
+//class LCA
+//{
+//public:
+//	int getLCA(int a, int b)
+//	{
+//		if (a == b || a == b / 2)
+//			return a;
+//		if (b == a / 2)
+//			return b;
+//		while (a != b)
+//		{
+//			if (a > b)
+//				a /= 2;
+//			else
+//				b /= 2;
+//		}
+//		return a;
+//	}
+//};
+
+#include <iostream>
+using namespace std;
+
 int main()
 {
-	int I = 1;
-	if (I <= 0)
-		printf("*********\n");
-	else
-		printf("%%%%%%%%%\n");
+	int byte;
+	while (cin >> byte)
+	{
+		int max = 0;
+		int count = 0;
+		while (byte)
+		{
+			int flag = 0;
+			while (byte && (byte & 1))
+			{
+				byte = byte >> 1;
+				count++;
+			}
+			if (!(byte & 1))
+			{
+				if (count > max)
+					max = count;
+				count = 0;
+				byte = byte >> 1;
+			}
+		}
+		cout << max << endl;
+	}
 	return 0;
 }
