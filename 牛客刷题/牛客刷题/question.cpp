@@ -1028,33 +1028,143 @@ using namespace std;
 //	}
 //};
 
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int byte;
+//	while (cin >> byte)
+//	{
+//		int max = 0;
+//		int count = 0;
+//		while (byte)
+//		{
+//			int flag = 0;
+//			while (byte && (byte & 1))
+//			{
+//				byte = byte >> 1;
+//				count++;
+//			}
+//			if (!(byte & 1))
+//			{
+//				if (count > max)
+//					max = count;
+//				count = 0;
+//				byte = byte >> 1;
+//			}
+//		}
+//		cout << max << endl;
+//	}
+//	return 0;
+//}
+
+#include <iostream>
+//#define SQR(A) A*A
+//void main()
+//{
+//	int x = 6, y = 3, z = 2;
+//	x /= SQR(y + z) / SQR(y + z);
+//	cout << x << endl;
+//}
+//void main()
+//{
+//	int n[][3] = { 10, 20, 30, 40, 50, 60 };
+//	int(*p)[3];;
+//	p = n;
+//	cout << p[0][0] << "," << *(p[0] + 1) << "," << (*p)[2] << endl;
+//}
+
+//void func(const int& v1, const int& v2)
+//{
+//	std::cout << v1 << ' ';
+//	std::cout << v2 << ' ';
+//}
+//
+//
+//int main(int argc, char* argv[])
+//{
+//	int i = 0;
+//	func(++i, i++);
+//	return 0;
+//}
+
+//#include "stdio.h"
+//class Base
+//{
+//public:
+//	int Bar(char x)
+//	{
+//		return (int)(x);
+//	}
+//	virtual int Bar(int x)
+//	{
+//		return(2 * x);
+//	}
+//};
+//class Derived : public Base
+//{
+//public:
+//	int Bar(char x)
+//	{
+//		return (int)(-x);
+//	}
+//	int Bar(int x)
+//	{
+//		return(x / 2);
+//	}
+//};
+//
+//int main()
+//{
+//	Derived Obj;
+//	Base *pObj = &Obj;
+//	printf("%d", pObj->Bar((char)(100)));
+//	printf("%d", pObj->Bar(100));
+//	return 0;
+//}
+
+//class BinInsert
+//{
+//public:
+//	int binInsert(int n, int m, int j, int i)
+//	{
+//		return (n + (m << j));
+//	}
+//};
+
 #include <iostream>
 using namespace std;
 
+bool IsPrime(int n)
+{
+	for (int i = 2; i < n; ++i)
+	{
+		if (n % i == 0)
+			return false;
+		return true;
+	}
+}
+
+void Parse(int& n)
+{
+	int ret1 = n / 2;
+	int ret2 = n - ret1;
+	while (1)
+	{
+		if (IsPrime(ret1) && IsPrime(ret2))
+			break;
+		ret1--;
+		ret2++;
+	}
+	cout << ret1 << endl;
+	cout << ret2 << endl;
+}
+
 int main()
 {
-	int byte;
-	while (cin >> byte)
-	{
-		int max = 0;
-		int count = 0;
-		while (byte)
-		{
-			int flag = 0;
-			while (byte && (byte & 1))
-			{
-				byte = byte >> 1;
-				count++;
-			}
-			if (!(byte & 1))
-			{
-				if (count > max)
-					max = count;
-				count = 0;
-				byte = byte >> 1;
-			}
-		}
-		cout << max << endl;
-	}
+	int n;
+	while (cin >> n)
+		Parse(n);
 	return 0;
 }
