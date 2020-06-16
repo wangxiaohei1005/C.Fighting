@@ -1133,38 +1133,220 @@ using namespace std;
 //	}
 //};
 
+//#include <iostream>
+//using namespace std;
+//
+//bool IsPrime(int n)
+//{
+//	for (int i = 2; i < n; ++i)
+//	{
+//		if (n % i == 0)
+//			return false;
+//		return true;
+//	}
+//}
+//
+//void Parse(int& n)
+//{
+//	int ret1 = n / 2;
+//	int ret2 = n - ret1;
+//	while (1)
+//	{
+//		if (IsPrime(ret1) && IsPrime(ret2))
+//			break;
+//		ret1--;
+//		ret2++;
+//	}
+//	cout << ret1 << endl;
+//	cout << ret2 << endl;
+//}
+//
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//		Parse(n);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int i, a[10];
+//	for (i = 9; i >= 0; i--)
+//	{
+//		a[i] = 10 - i;
+//	}
+//	printf("%d %d %d", a[2], a[5], a[8]);
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	virtual void print()
+//	{
+//		cout << "A::print()" << "\n";
+//	}
+//};
+//
+//class B :public A
+//{
+//public:virtual void print()
+//{
+//	cout << "B::print()" << "\n";
+//}
+//};
+//
+//class C :public A
+//{
+//public:virtual void print()
+//{
+//	cout << "C::print()" << "\n";
+//}
+//};
+//
+//void print(A a)
+//{
+//	a.print();
+//}
+//
+//int main()
+//{
+//	A a, *aa, *ab, *ac;
+//	B b;
+//	C c;
+//	aa = &a;
+//	ab = &b;
+//	ac = &c;
+//	a.print();
+//	b.print();
+//	c.print();
+//	aa->print();
+//	ab->print();
+//	ac->print();
+//	print(a);
+//	print(b);
+//	print(c);
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//class B
+//{
+//public:
+//
+//	B()
+//	{
+//		cout << "default constructor" << " ";
+//	}
+//	~B()
+//	{
+//		cout << "destructed" << " ";
+//	}
+//	B(int i) : data(i)
+//	{
+//		cout << "constructed by parameter" << data << " ";
+//	}
+//private:int data;
+//};
+//
+//B Play(B b)
+//{
+//	return b;
+//}
+
+//int main(/*int argc, char *argv[]*/)
+//{
+//	/*B temp = Play(5);*/
+//	int i = 0, a = 1, b = 2, c = 3;
+//	i = ++a || ++b || ++c;
+//	printf("%d %d %d %d", i, a, b, c);
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//using namespace std;
+//
+//int main()
+//{
+//	string str;
+//	while (getline(cin, str))
+//	{
+//		bool flag = false;
+//		vector<string> dev;
+//		string row;
+//		for (int i = 0; i < str.size(); i++)
+//		{
+//			if (flag)
+//			{
+//				if (str[i] != '\"')
+//					row += str[i];
+//				else
+//
+//					flag = false;
+//			}
+//			else
+//			{
+//				if (str[i] == ' ')
+//				{
+//					dev.push_back(row);
+//					row = "";
+//				}
+//				else if (str[i] == '\"')
+//					flag = true;
+//				else
+//					row += str[i];
+//			}
+//		}
+//		dev.push_back(row);
+//		cout << dev.size() << endl;
+//		for (auto i : dev)
+//			cout << i << endl;
+//	}
+//	return 0;
+//}
+
 #include <iostream>
 using namespace std;
-
-bool IsPrime(int n)
+int Search(int N, int M)
 {
-	for (int i = 2; i < n; ++i)
+	if (N == M)
+		return 0;
+	int tmp = 0;
+	for (int i = 2; i < N; i++)
 	{
-		if (n % i == 0)
-			return false;
-		return true;
+		if (i * (N / i) == N)
+		{
+			tmp++;
+			if (Search(N + N / i, M) != 0)
+			{
+				tmp += Search(N + N / i, M);
+				return tmp;
+			}
+			else
+			{
+				tmp--;
+			}
+		}
 	}
-}
-
-void Parse(int& n)
-{
-	int ret1 = n / 2;
-	int ret2 = n - ret1;
-	while (1)
-	{
-		if (IsPrime(ret1) && IsPrime(ret2))
-			break;
-		ret1--;
-		ret2++;
-	}
-	cout << ret1 << endl;
-	cout << ret2 << endl;
+	return -1;
 }
 
 int main()
 {
-	int n;
-	while (cin >> n)
-		Parse(n);
+	int N, M;
+	while (cin >> N >> M)
+	{
+		cout << Search(N, M) << endl;
+	}
 	return 0;
 }
