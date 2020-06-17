@@ -1315,38 +1315,102 @@ using namespace std;
 //	return 0;
 //}
 
-#include <iostream>
-using namespace std;
-int Search(int N, int M)
-{
-	if (N == M)
-		return 0;
-	int tmp = 0;
-	for (int i = 2; i < N; i++)
-	{
-		if (i * (N / i) == N)
-		{
-			tmp++;
-			if (Search(N + N / i, M) != 0)
-			{
-				tmp += Search(N + N / i, M);
-				return tmp;
-			}
-			else
-			{
-				tmp--;
-			}
-		}
-	}
-	return -1;
-}
+//#include <iostream>
+//using namespace std;
+//int Search(int N, int M)
+//{
+//	if (N == M)
+//		return 0;
+//	int tmp = 0;
+//	for (int i = 2; i < N; i++)
+//	{
+//		if (i * (N / i) == N)
+//		{
+//			tmp++;
+//			if (Search(N + N / i, M) != 0)
+//			{
+//				tmp += Search(N + N / i, M);
+//				return tmp;
+//			}
+//			else
+//			{
+//				tmp--;
+//			}
+//		}
+//	}
+//	return -1;
+//}
+//
+//int main()
+//{
+//	int N, M;
+//	while (cin >> N >> M)
+//	{
+//		cout << Search(N, M) << endl;
+//	}
+//	return 0;
+//}
 
-int main()
-{
-	int N, M;
-	while (cin >> N >> M)
-	{
-		cout << Search(N, M) << endl;
-	}
-	return 0;
-}
+#include <iostream>
+//#include <string.h>
+using namespace std;
+//
+//int main()
+//{
+//	char ccString1[] = "Is page Fault??";
+//	char ccString2[] = "No page Fault??";
+//	strcpy(ccString1, "No");
+//	if (strcmp(ccString1, ccString2) == 0)
+//		cout << ccString2;
+//	else
+//		cout << ccString1;
+//	return 0;
+//}
+
+
+//class S
+//{
+//public:
+//	int GetValue() const
+//	{
+//		vv = 1;
+//		return vv;
+//	}
+//private:
+//
+//	mutable int vv;
+//};
+
+//int main()
+//{
+//	char str[] = " glad to test something";
+//	char *p = str;
+//	p++;
+//	int *p1 = reinterpret_cast<int *>(p);
+//	p1++;
+//	p = reinterpret_cast<char *>(p1);
+//	printf("result is %s\n", p);
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//const int days[] = { 0,31,59,90,120,151,181,212,243,273,304,334,365 };
+//int main() 
+//{   
+//	int y, m, d;    
+//	while (cin >> y >> m >> d) 
+//	{       
+//		int ans = days[m - 1] + d;   
+//		if (m >= 13 || m < 0)
+//			return -1;
+//		if (d > 31 || d < 0)
+//			return -1;
+//		if (((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) && m > 2) 
+//			ans++;     
+//		cout << ans << endl;   
+//	}   
+//	return 0;
+//}
+
