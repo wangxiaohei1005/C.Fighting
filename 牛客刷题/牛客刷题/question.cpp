@@ -1414,3 +1414,58 @@ using namespace std;
 //	return 0;
 //}
 
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		int count = 0;
+//		while (n > 0)
+//		{
+//			if (n & 1)
+//				++count;
+//			n >>= 1;
+//		}
+//		cout << count << endl;
+//	}
+//	return 0;
+//}
+//#include <vector>
+//class Gloves
+//{
+//public:
+//	int findMinimum(int n, vector<int> left, vector<int> right)
+//	{
+//		int left_sum = 0, left_min = INT_MAX;
+//		int right_sum = 0, right_min = INT_MAX;
+//		int sum = 0;
+//		for (int i = 0; i < n; i++)
+//		{
+//			if (left[i] * right[i] == 0)
+//			{
+//				sum += left[i] + right[i];
+//			}
+//			else
+//			{
+//				left_sum += left[i];
+//				right_sum += right[i];
+//				left_min = min(left[i], left_min);
+//				right_min = min(right[i], right[i]);
+//			}
+//		}
+//		return sum + min(left_sum - left_min, right_sum - right_min + 1) + 1;
+//	}
+//};
+
+myclass::foo()
+{
+	delete this;
+}
+void func()
+{
+	myclass *a = new myclass();
+	a->foo();
+}
