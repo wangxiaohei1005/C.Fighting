@@ -1460,12 +1460,118 @@ using namespace std;
 //	}
 //};
 
-myclass::foo()
+//myclass::foo()
+//{
+//	delete this;
+//}
+//void func()
+//{
+//	myclass *a = new myclass();
+//	a->foo();
+//}
+
+//int main()
+//{
+//	const int a = 10;
+//	int * p = (int *)(&a);
+//	*p = 20;
+//	cout << "a = " << a << ", *p = " << *p << endl;
+//	return 0;
+//}
+
+//#include <algorithm>
+//
+//int Count(int n)
+//{
+//	int count = 0;
+//	if (n < 0 || n>50000)
+//	{
+//		return -1;
+//	}
+//	for (int i = 2; i <= n; ++i)
+//	{
+//		int sum = 0;
+//		for (int j = 2; j <= sqrt(i); ++j)
+//		{
+//			if (i % j == 0)
+//			{
+//				if (i / j == j)
+//				{
+//					sum += j;
+//				}
+//
+//				else
+//				{
+//					sum += j + (i / j);
+//				}
+//			}
+//		}
+//		if (sum + 1 == i)
+//		{
+//			++count;
+//		}
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		cout << Count(n) << endl;
+//	}
+//	return 0;
+//}
+
+//class A
+//{
+//public:
+//	void print()
+//	{
+//		cout << "A:print()";
+//	}
+//};
+//
+//class B: private A
+//{
+//public:
+//	void print()
+//	{
+//		cout << "B:print()";
+//	}
+//};
+//
+//class C: public B
+//{
+//public:
+//	void print()
+//	{
+//		A::print();
+//	}
+//};
+//
+//int main()
+//{
+//	C b;
+//	b.print();
+//}
+
+#include <iostream>
+using namespace std;
+
+int main()
 {
-	delete this;
-}
-void func()
-{
-	myclass *a = new myclass();
-	a->foo();
+	int month;
+	while (cin >> month)
+	{
+		int a = 1, b = 0, c = 0;
+		while (--month)
+		{
+			c += b;
+			b = a;
+			a = c;
+		}
+		cout << a + b + c << endl;
+	}
+	return 0;
 }
