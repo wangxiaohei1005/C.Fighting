@@ -1556,22 +1556,48 @@ using namespace std;
 //	b.print();
 //}
 
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int month;
+//	while (cin >> month)
+//	{
+//		int a = 1, b = 0, c = 0;
+//		while (--month)
+//		{
+//			c += b;
+//			b = a;
+//			a = c;
+//		}
+//		cout << a + b + c << endl;
+//	}
+//	return 0;
+//}
+
 #include <iostream>
 using namespace std;
 
+int fun(int n)
+{
+	if (n == 1)
+		return 0;
+	if (n == 2)
+		return 1;
+	return fun(n - 2) + 1;
+}
+
 int main()
 {
-	int month;
-	while (cin >> month)
+	int n;
+	while (cin >> n)
 	{
-		int a = 1, b = 0, c = 0;
-		while (--month)
-		{
-			c += b;
-			b = a;
-			a = c;
-		}
-		cout << a + b + c << endl;
+		if (n == 0)
+			break;
+		else
+			cout << fun(n) << endl;
 	}
+
 	return 0;
 }
