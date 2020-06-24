@@ -1576,27 +1576,84 @@ using namespace std;
 //	return 0;
 //}
 
+//#include <iostream>
+//using namespace std;
+//
+//int fun(int n)
+//{
+//	if (n == 1)
+//		return 0;
+//	if (n == 2)
+//		return 1;
+//	return fun(n - 2) + 1;
+//}
+//
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		if (n == 0)
+//			break;
+//		else
+//			cout << fun(n) << endl;
+//	}
+//
+//	return 0;
+//}
+//
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//	int end = s.size();
+//	for (int i = end - 1; i >= 0; --i)
+//	{
+//		cout << s[i];
+//	}
+//	return 0;
+//}
+
 #include <iostream>
+#include <string>
 using namespace std;
-
-int fun(int n)
-{
-	if (n == 1)
-		return 0;
-	if (n == 2)
-		return 1;
-	return fun(n - 2) + 1;
-}
-
+//int main()
+//{
+//	string s1, s2;
+//	while (cin >> s1 >> s2)
+//	{
+//		int n = 0;
+//		for (int i = 0; i < s1.size(); i++)
+//		{
+//			for (int j = s1.size(); j > i; i--)
+//			{
+//				if (s2.find(s1.substr(i, j - i)) != string::npos)
+//				{
+//					n = n > (j - i) ? n : (j - i);
+//				}
+//			}
+//		}
+//		cout << n << endl;
+//	}
+//	return 0;
+//}
 int main()
 {
-	int n;
-	while (cin >> n)
+	string s1;
+	while (cin >> s1)
 	{
-		if (n == 0)
+		unsigned int i;
+		for (i = 0; i < s1.size(); ++i)
+		{
+			if (s1.find(s1[i] == s1.rfind(s1[i])))
+				cout << s1[i] << endl;
 			break;
-		else
-			cout << fun(n) << endl;
+		}
+		if (i == s1.size())
+			cout << -1;
 	}
 
 	return 0;
