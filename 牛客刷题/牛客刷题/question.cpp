@@ -1640,6 +1640,60 @@ using namespace std;
 //	}
 //	return 0;
 //}
+//int main()
+//{
+//	string s1;
+//	while (cin >> s1)
+//	{
+//		unsigned int i;
+//		for (i = 0; i < s1.size(); ++i)
+//		{
+//			if (s1.find(s1[i] == s1.rfind(s1[i])))
+//				cout << s1[i] << endl;
+//			break;
+//		}
+//		if (i == s1.size())
+//			cout << -1;
+//	}
+//
+//	return 0;
+//}
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+//int main()
+//{
+//	int c,v,k;
+//	cin >> c;
+//	while (c--)
+//	{
+//		cin >> v >> k;
+//		int num = 2 * v;
+//		vector<int> table(num);
+//		for (int i = 0; i < num; ++i)
+//		{
+//			cin >> table[i];
+//		}
+//		while (k--)
+//		{
+//			vector<int> n1(table.begin(), table.end());
+//			for (int i = 0; i < v; ++i)
+//			{
+//				table[2 * i] = n1[i];
+//				table[2 * i + 1] = n1[i + v];
+//			}
+//		}
+//		for (int i = 0; i < num - 1; ++i)
+//		{
+//			cout << table[i] << " ";
+//		}
+//		cout << table[num - 1] << endl;
+//	}
+//	return 0;
+//}
+
 int main()
 {
 	string s1;
@@ -1653,7 +1707,7 @@ int main()
 			break;
 		}
 		if (i == s1.size())
-			cout << -1;
+			cout << -1 << endl;
 	}
 
 	return 0;
