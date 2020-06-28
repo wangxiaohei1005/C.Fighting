@@ -1694,21 +1694,94 @@ using namespace std;
 //	return 0;
 //}
 
+//int main()
+//{
+//	string s1;
+//	while (cin >> s1)
+//	{
+//		unsigned int i;
+//		for (i = 0; i < s1.size(); ++i)
+//		{
+//			if (s1.find(s1[i] == s1.rfind(s1[i])))
+//				cout << s1[i] << endl;
+//			break;
+//		}
+//		if (i == s1.size())
+//			cout << -1 << endl;
+//	}
+//
+//	return 0;
+//}
+
+//class Bonus 
+//{
+//public:
+//	int getMost(vector<vector<int> > board) 
+//	{
+//		if (board.empty())
+//			return 0;
+//		for (int i = 1; i < 6; ++i)
+//		{
+//			board[0][i] += board[0][i - 1];
+//			board[i][0] += board[i - 1][0];
+//		}
+//		for (int i = 1; i < 6; ++i)
+//		{
+//			for (int j = 1; j < 6; ++i)
+//			{
+//				board[i][j] += max(board[i - 1][j], board[i][j - 1]);
+//			}
+//		}
+//		return board[5][5];
+//	}
+//};
+
+//#include <vector>
+//using namespace std;
+//class Solution
+//{
+//	int X, Y;//方向和大小
+//	vector<vector<int>> m_maze;
+//};
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int GCD(int a, int b)
+{
+	int c;
+	while (c = a % b)
+	{
+		a = b;
+		b = c;
+	}
+	return b;
+}
+
 int main()
 {
-	string s1;
-	while (cin >> s1)
+	int n, power;
+	vector<int> num;
+	while (cin >> n >> power)
 	{
-		unsigned int i;
-		for (i = 0; i < s1.size(); ++i)
+		num.resize(n);
+		for (int i = 0; i < n; i++)
 		{
-			if (s1.find(s1[i] == s1.rfind(s1[i])))
-				cout << s1[i] << endl;
-			break;
+			cin >> num[i];
 		}
-		if (i == s1.size())
-			cout << -1 << endl;
+		for (int k = 0; k < n; k++)
+		{
+			if (num[k] < power)
+			{
+				power += num[k];
+			}
+			else
+			{
+				power += GCD(power, num[k]);
+			}
+		}
+		cout << power << endl;
 	}
-
 	return 0;
 }
