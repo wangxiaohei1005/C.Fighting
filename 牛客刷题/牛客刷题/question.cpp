@@ -1744,44 +1744,107 @@ using namespace std;
 //	vector<vector<int>> m_maze;
 //};
 
-#include <vector>
-#include <iostream>
-using namespace std;
+//#include <vector>
+//#include <iostream>
+//using namespace std;
+//
+//int GCD(int a, int b)
+//{
+//	int c;
+//	while (c = a % b)
+//	{
+//		a = b;
+//		b = c;
+//	}
+//	return b;
+//}
+//
+//int main()
+//{
+//	int n, power;
+//	vector<int> num;
+//	while (cin >> n >> power)
+//	{
+//		num.resize(n);
+//		for (int i = 0; i < n; i++)
+//		{
+//			cin >> num[i];
+//		}
+//		for (int k = 0; k < n; k++)
+//		{
+//			if (num[k] < power)
+//			{
+//				power += num[k];
+//			}
+//			else
+//			{
+//				power += GCD(power, num[k]);
+//			}
+//		}
+//		cout << power << endl;
+//	}
+//	return 0;
+//}
 
-int GCD(int a, int b)
-{
-	int c;
-	while (c = a % b)
-	{
-		a = b;
-		b = c;
-	}
-	return b;
-}
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//
+//int main()
+//{
+//	vector<int> v = { 1, 1 };
+//	for (int i = 2; i < 10001; ++i)
+//	{
+//		v.push_back((v[i - 2] + v[i - 1]) % 10000);
+//	}
+//	int n, x;
+//	while (cin >> n)
+//	{
+//		for (int i = 0; i < n; ++i)
+//		{
+//			cin >> x;
+//			printf("%04d", v[x]);
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+#include <iostream>
+#include <string>
+using namespace std;
 
 int main()
 {
-	int n, power;
-	vector<int> num;
-	while (cin >> n >> power)
+	string s;
+	while (cin >> s)
 	{
-		num.resize(n);
-		for (int i = 0; i < n; i++)
+		long long sum = 0;
+		for (size_t i = 0; i < s.size(); ++i)
 		{
-			cin >> num[i];
+			sum += s[i] - '0';
 		}
-		for (int k = 0; k < n; k++)
+		int ret = 0;
+		while (sum > 9)
 		{
-			if (num[k] < power)
+			ret += sum % 10;
+			sum /= 10;
+			if (sum < 10)
 			{
-				power += num[k];
-			}
-			else
-			{
-				power += GCD(power, num[k]);
+				ret += sum;
+				if (ret > 9)
+				{
+					sum = ret;
+					ret = 0;
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
-		cout << power << endl;
+		ret = ret == 0 ? sum : ret;
+		cout << ret << endl;
 	}
 	return 0;
 }
