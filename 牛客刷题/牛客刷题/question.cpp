@@ -1810,41 +1810,71 @@ using namespace std;
 //	return 0;
 //}
 
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//int main()
+//{
+//	string s;
+//	while (cin >> s)
+//	{
+//		long long sum = 0;
+//		for (size_t i = 0; i < s.size(); ++i)
+//		{
+//			sum += s[i] - '0';
+//		}
+//		int ret = 0;
+//		while (sum > 9)
+//		{
+//			ret += sum % 10;
+//			sum /= 10;
+//			if (sum < 10)
+//			{
+//				ret += sum;
+//				if (ret > 9)
+//				{
+//					sum = ret;
+//					ret = 0;
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+//		}
+//		ret = ret == 0 ? sum : ret;
+//		cout << ret << endl;
+//	}
+//	return 0;
+//}
+
+//class Solution
+//{
+//public:
+//	int jumpFloorII(int number)
+//	{
+//		if (number <= 0)
+//			return -1;
+//		else if (number == 1)
+//			return 1;
+//		else
+//			return 2 * jumpFloorII(number - 1);
+//	}
+//};
+
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main()
 {
-	string s;
-	while (cin >> s)
+	long long l, r;
+	while (cin >> l >> r)
 	{
-		long long sum = 0;
-		for (size_t i = 0; i < s.size(); ++i)
-		{
-			sum += s[i] - '0';
-		}
-		int ret = 0;
-		while (sum > 9)
-		{
-			ret += sum % 10;
-			sum /= 10;
-			if (sum < 10)
-			{
-				ret += sum;
-				if (ret > 9)
-				{
-					sum = ret;
-					ret = 0;
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		ret = ret == 0 ? sum : ret;
-		cout << ret << endl;
+		if (l > 2 * r * 3.14)
+			cout << "No" << endl;
+		else
+			cout << "Yes" << endl;
 	}
 	return 0;
 }
