@@ -267,7 +267,7 @@ int main()
 //	return 0;
 //}
 
-#include <stdio.h>
+//#include <stdio.h>
 //int main()
 //{
 //	int x = 1;
@@ -398,9 +398,9 @@ int main()
 //	}
 //};
 
-#include <iostream>
-#include <string>
-using namespace std;
+//#include <iostream>
+//#include <string>
+//using namespace std;
 //
 //class A
 //{
@@ -433,7 +433,7 @@ using namespace std;
 //	return 0;
 //}
 
-#include <stdio.h>
+//#include <stdio.h>
 //int main()
 //{
 //	int a = 1, b = 2, c = 3, d = 0;
@@ -758,9 +758,9 @@ using namespace std;
 //		return -1;
 //	}
 //};
-
-#include <iostream>
-using namespace std;
+//
+//#include <iostream>
+//using namespace std;
 //
 //class MyClass
 //{
@@ -1059,7 +1059,7 @@ using namespace std;
 //	return 0;
 //}
 
-#include <iostream>
+//#include <iostream>
 //#define SQR(A) A*A
 //void main()
 //{
@@ -1350,11 +1350,11 @@ using namespace std;
 //	}
 //	return 0;
 //}
-
-#include <iostream>
-//#include <string.h>
-using namespace std;
 //
+//#include <iostream>
+////#include <string.h>
+//using namespace std;
+////
 //int main()
 //{
 //	char ccString1[] = "Is page Fault??";
@@ -1616,10 +1616,10 @@ using namespace std;
 //	}
 //	return 0;
 //}
-
-#include <iostream>
-#include <string>
-using namespace std;
+//
+//#include <iostream>
+//#include <string>
+//using namespace std;
 //int main()
 //{
 //	string s1, s2;
@@ -1659,9 +1659,9 @@ using namespace std;
 //	return 0;
 //}
 
-#include <iostream>
-#include <vector>
-using namespace std;
+//#include <iostream>
+//#include <vector>
+//using namespace std;
 
 //int main()
 //{
@@ -1863,18 +1863,122 @@ using namespace std;
 //	}
 //};
 
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	long long l, r;
+//	while (cin >> l >> r)
+//	{
+//		if (l > 2 * r * 3.14)
+//			cout << "No" << endl;
+//		else
+//			cout << "Yes" << endl;
+//	}
+//	return 0;
+//}
+//class Solution
+//{
+//public:
+//	int add(int n1, int n2)
+//	{
+//		while (n2 != 0)
+//		{
+//			int sum = n1^n2;
+//			int car = (n1 & n2) << 1;
+//				n1 = sum;
+//			n2 = car;
+//		}
+//		return n1;
+//	}
+//};
+
+//#include <stdio.h>
+//#include <unistd,h>
+//int main()
+//{
+//	fork();
+//	fork();
+//	fork();
+//	printf("hello\n");
+//	return 0;
+//}
+
+
+//class Solution 
+//{
+//public:
+//	/**
+//	*  奇数位上都是奇数或者偶数位上都是偶数
+//	*  输入：数组arr，长度大于2
+//	*  len：arr的长度
+//	*  将arr调整成奇数位上都是奇数或者偶数位上都是偶数
+//	*/
+//	void oddInOddEvenInEven(vector<int>& arr, int len)
+//	{
+//		/*int i = 0;
+//		int j = 1;
+//		while (i < len && j < len)
+//		{
+//			while (i < len && (arr[i] & 1) == 0)
+//				i += 2;
+//			while (j < len && (arr[j] & 1) == 1)
+//				j += 2;
+//			if (i < len && j < len)
+//				swap(arr[i], arr[j]);
+//		}*/
+//		/*for (int i = 0, j = 1; i < len && j < len;)
+//		{
+//			if (arr[i] & 1 == 0)
+//			{
+//				i += 2;
+//				continue;
+//			}
+//			if (arr[j] & 1 == 1)
+//			{
+//				j += 2;
+//				continue;
+//			}
+//			swap(arr[i], arr[j]);
+//			i += 2;
+//			j += 2;
+//		}*/
+//		int i = 0, j = 1;
+//		while (i < len && j < len)
+//		{
+//			if (arr[len - 1] % 2 == 0)
+//			{
+//				swap(arr[len - 1], arr[i]);
+//				i += 2;
+//			}
+//			else
+//			{
+//				swap(arr[len - 1], arr[j]);
+//				j += 2;
+//			}
+//		}
+//	}
+//};
+
 #include <iostream>
-using namespace std;
+#include <string>
+#define ADD(x, y) ((x) + (y))
+#define CMP(x, y) ((x) > (y))
 
 int main()
 {
-	long long l, r;
-	while (cin >> l >> r)
+	double a, b, c;
+	while (std::cin >> a >> b >> c)
 	{
-		if (l > 2 * r * 3.14)
-			cout << "No" << endl;
+		if (CMP(ADD(a, b), c) && CMP(ADD(b, c), a) && CMP(ADD(a, c), b))
+		{
+			std::cout << "Yes" << std::endl;
+		}
 		else
-			cout << "Yes" << endl;
+		{
+			std::cout << "No" << std::endl;
+		}
 	}
 	return 0;
 }
