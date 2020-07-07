@@ -1961,24 +1961,111 @@ int main()
 //	}
 //};
 
+//#include <iostream>
+//#include <string>
+//#define ADD(x, y) ((x) + (y))
+//#define CMP(x, y) ((x) > (y))
+//
+//int main()
+//{
+//	double a, b, c;
+//	while (std::cin >> a >> b >> c)
+//	{
+//		if (CMP(ADD(a, b), c) && CMP(ADD(b, c), a) && CMP(ADD(a, c), b))
+//		{
+//			std::cout << "Yes" << std::endl;
+//		}
+//		else
+//		{
+//			std::cout << "No" << std::endl;
+//		}
+//	}
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//int WeekToDay(int year, int month, int c, int w, bool B)
+//{
+//	int day, week, i;
+//	if (month == 1)
+//	{
+//		month = 13;
+//		year--;
+//	}
+//	if (month == 2)
+//	{
+//		month = 14;
+//		year--;
+//	}
+//	i = 0;
+//	for (day = B ? 1 : 31; day <= B ? 31 : 1; B ? (day++) : (day--))
+//	{
+//		week = (day + 2 * month + 3 * (month + 1) / 5 + year + year / 4 - year / 100 + year / 400) % 7;
+//		if (week + 1 == w)
+//			++i;
+//		if (i == c)
+//			break;
+//	}
+//	return day;
+//}
+//
+//int main()
+//{
+//	int year;
+//	while (cin >> year)
+//	{
+//		cout << year << "-01 -01" << endl;
+//		printf("%d -01 -%02d\n", year, WeekToDay(year, 1, 3, 1, 1));
+//		printf("%d -02 -%02d\n", year, WeekToDay(year, 2, 3, 1, 1));
+//		printf("%d -05 -%02d\n", year, WeekToDay(year, 5, 1, 1, 0));
+//		cout << year << "-07 -04" << endl;
+//		printf("%d -09 -%02d\n", year, WeekToDay(year, 9, 1, 1, 1));
+//		printf("%d -11 -%02d\n", year, WeekToDay(year, 11, 4, 4, 1));
+//		cout << year << "-12 -25" << endl << endl;
+//	}
+//	return 0;
+//}
+
 #include <iostream>
-#include <string>
-#define ADD(x, y) ((x) + (y))
-#define CMP(x, y) ((x) > (y))
+#include <math.h>
+using namespace std;
 
 int main()
 {
-	double a, b, c;
-	while (std::cin >> a >> b >> c)
+	int number;
+	while (cin >> number)
 	{
-		if (CMP(ADD(a, b), c) && CMP(ADD(b, c), a) && CMP(ADD(a, c), b))
+		cout << number << " = ";
+		int* number1 = new int[1000];
+		int j = 0;
+		for (int i = 2; i <= sqrt(number); i++)
 		{
-			std::cout << "Yes" << std::endl;
+			while (number % i == 0)
+			{
+				if (number != 1)
+				{
+					number1[j] = i;
+					j++;
+					number /= i;
+				}
+			}
 		}
-		else
+		if (number != 1)
 		{
-			std::cout << "No" << std::endl;
+			number1[j] = number;
+			j++;
 		}
+		for (int k = 0; k < j; k++)
+		{
+			cout << number1[k];
+			if (k + 1 < j)
+			{
+				cout << " * ";
+			}
+		}
+		cout << endl;
 	}
 	return 0;
 }
