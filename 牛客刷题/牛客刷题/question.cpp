@@ -2194,26 +2194,64 @@ int main()
 //	return 0;
 //}
 
-#include <iostream>
-#include <algorithm>
-using namespace std;
+//#include <iostream>
+//#include <algorithm>
+//using namespace std;
+//
+//int main()
+//{
+//	int from, to;
+//	while (cin >> from >> to)
+//	{
+//		long long sum = 0, a1 = 1, a2 = 1;
+//		for (int i = 0; i < to; ++i)
+//		{
+//			if (i >= from - 1)
+//			{
+//				sum += a1;
+//			}
+//			swap(a1, a2);
+//			a2 += a1;
+//		}
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
 
+//#include <iostream>
+//#include <list>
+//#include <unordered_map>
+//using namespace std;
+//
+//struct give
+//{
+//	int key, value;
+//};
+//
+//class LRU
+//{
+//public:
+//	int key;
+//	list<p> cache;
+//	unordered_map<int, list<p>::iterator> map;
+//
+//private:
+//};
+
+#include <iostream>
+#include <cstdio> 
+using namespace std;
 int main()
 {
-	int from, to;
-	while (cin >> from >> to)
+	long num[91] = { 1, 2 };
+	for (int i = 2; i <= 90; i++)
 	{
-		long long sum = 0, a1 = 1, a2 = 1;
-		for (int i = 0; i < to; ++i)
-		{
-			if (i >= from - 1)
-			{
-				sum += a1;
-			}
-			swap(a1, a2);
-			a2 += a1;
-		}
-		cout << sum << endl;
+		num[i] = num[i - 1] + num[i - 2];
+	}
+	int count;
+	while (cin >> count)
+	{
+		printf("%lld\n", num[count - 1]);
 	}
 	return 0;
 }
