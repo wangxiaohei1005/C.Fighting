@@ -2238,20 +2238,89 @@ int main()
 //private:
 //};
 
+//#include <iostream>
+//#include <cstdio> 
+//using namespace std;
+//int main()
+//{
+//	long num[91] = { 1, 2 };
+//	for (int i = 2; i <= 90; i++)
+//	{
+//		num[i] = num[i - 1] + num[i - 2];
+//	}
+//	int count;
+//	while (cin >> count)
+//	{
+//		printf("%lld\n", num[count - 1]);
+//	}
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <fstream>
+//#include <algorithm>
+//#include <string>
+//#include <set>
+//using namespace std;
+//
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		set<string> str;
+//
+//		string id, conn;
+//
+//		int maxsize = 0;
+//		for (int i = 0; i < n; ++i)
+//		{
+//			cin >> id >> conn;
+//			
+//			if (conn == "connect")
+//				str.insert(id);
+//			
+//			else if (conn == "disconnect")
+//				str.erase(id);
+//			
+//			int size = str.size();
+//			maxsize = max(maxsize, size);
+//		}
+//		cout << maxsize << endl;
+//	}
+//	return 0;
+//}
+
 #include <iostream>
-#include <cstdio> 
-using namespace std;
-int main()
-{
-	long num[91] = { 1, 2 };
-	for (int i = 2; i <= 90; i++)
-	{
-		num[i] = num[i - 1] + num[i - 2];
+#include <fstream>
+#include <algorithm> 
+#include <string>
+#include <vector>
+using namespace std; 
+int main() 
+{ 
+	int n;
+	while (cin >> n) 
+	{ 
+		vector<string> list(n);
+		vector<bool> flag(n, true);
+		for (int i = 0; i < n; ++i) 
+			cin >> list[i]; 
+		sort(list.begin(), list.end()); 
+		//将类似字符串经过排序，放在一起
+		for (int i = 0; i < list.size() - 1; ++i)
+		{ 
+			// 1、两串相同 
+			// 2、前串是后串的子串，而且后串后一位是 '/'
+			if (list[i] == list[i + 1])
+				flag[i] = false;
+			else if (list[i].size() < list[i + 1].size() && list[i] == list[i + 1].substr(0, list[i].size()) && list[i + 1] [list[i].size()] == '/')
+				flag[i] = false;
+		}
+		for (int i = 0; i < list.size();++i) 
+			if (flag[i])
+				cout << "mkdir -p " << list[i] << endl; 
+		cout << endl; 
 	}
-	int count;
-	while (cin >> count)
-	{
-		printf("%lld\n", num[count - 1]);
-	}
-	return 0;
+	return 0; 
 }
