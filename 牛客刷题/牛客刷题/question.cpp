@@ -2349,62 +2349,161 @@ int main()
 //	return 0;
 //}
 
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <queue>
-using namespace std;
+//#include <iostream>
+//#include <fstream>
+//#include <vector>
+//#include <queue>
+//using namespace std;
+//
+//struct pos
+//{
+//	int x, y, level;
+//};
+//
+//int bfs(vector<vector<char> > & map)
+//{
+//	const int dir[4][2] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+//	queue<pos> que;
+//	int m = map.size(), n = map[0].size();
+//	vector<vector<bool> > visit(m, vector<bool>(n, false));
+//	pos start{ 0, 1, 0 }, end{ 9, 8, 0 };
+//	que.push(start);
+//	visit[start.x][start.y] = true;
+//	while (!que.empty())
+//	{
+//		pos cur = que.front(), next;
+//		que.pop();
+//		for (int i = 0; i < 4; ++i)
+//		{
+//			next.x = cur.x + dir[i][0];
+//			next.y = cur.y + dir[i][1]; 
+//			next.level = cur.level + 1;
+//			if (next.x == end.x && next.y == end.y) 
+//				return next.level; 
+//			if (next.x >= 0 && next.x < m && next.y >= 0 && next.y < n &&  !visit[next.x][next.y] && map[next.x][next.y] == '.') 
+//			{ 
+//				que.push(next); 
+//				visit[next.x][next.y] = true;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+//
+//int main() 
+//{
+//	vector<vector<char> > map(10, vector<char>(10)); 
+//	while (cin >> map[0][0]) //由多个测试用例，需要全部读取
+//	{
+//		for (int i = 0; i < 10; ++i)
+//		{
+//			for (int j = 0; j < 10; ++j)
+//			{
+//				if (i == 0 && j == 0)
+//					continue;
+//				cin >> map[i][j];
+//			}
+//		}
+//		cout << bfs(map) << endl;
+//	}
+//	return 0; 
+//}
 
-struct pos
+//#include <iostream>
+//#include <string>
+//#include  <map>
+//using namespace std;
+//
+//int main()
+//{
+//	string A, B;
+//	while (cin >> A >> B)
+//	{
+//		map<char, int> A1, B1;
+//		for (int i = 0; i < A.size(); i++)
+//		{
+//			A1[A[i]]++;
+//		}
+//		for (int i = 0; i < B.size(); i++)
+//		{
+//			B1[B[i]]++;
+//		}
+//		for (int i = 'A'; i <= 'Z'; i++)
+//		{
+//			if (B1[i] > A1[i])
+//			{
+//				cout << "No" << endl;
+//				break;
+//			}
+//			if (i == 'Z')
+//			{
+//				cout << "Yes" << endl;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+// 创建出的类对象只能在堆上
+// 思路：正常创建对象一定要调用构造函数，或者拷贝构造
+class HeapOnly
 {
-	int x, y, level;
+public:
+	static HeapOnly* GetObj()
+	{
+		return new HeapOnly;
+	}
+
+private:
+	HeapOnly()
+	{}
+
+	// C++98防拷贝：声明成私有
+	//HeapOnly(const HeapOnly& );
+public:
+	// C++11 : 声明成delete
+	HeapOnly(const HeapOnly&) = delete;
 };
 
-int bfs(vector<vector<char> > & map)
+int x7()
 {
-	const int dir[4][2] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-	queue<pos> que;
-	int m = map.size(), n = map[0].size();
-	vector<vector<bool> > visit(m, vector<bool>(n, false));
-	pos start{ 0, 1, 0 }, end{ 9, 8, 0 };
-	que.push(start);
-	visit[start.x][start.y] = true;
-	while (!que.empty())
-	{
-		pos cur = que.front(), next;
-		que.pop();
-		for (int i = 0; i < 4; ++i)
-		{
-			next.x = cur.x + dir[i][0];
-			next.y = cur.y + dir[i][1]; 
-			next.level = cur.level + 1;
-			if (next.x == end.x && next.y == end.y) 
-				return next.level; 
-			if (next.x >= 0 && next.x < m && next.y >= 0 && next.y < n &&  !visit[next.x][next.y] && map[next.x][next.y] == '.') 
-			{ 
-				que.push(next); 
-				visit[next.x][next.y] = true;
-			}
-		}
-	}
+	//HeapOnly hp;
+	//HeapOnly* p = new HeapOnly;
+	//HeapOnly* p = HeapOnly::GetObj();
+	std::shared_ptr<HeapOnly> sp1(HeapOnly::GetObj());
+	std::shared_ptr<HeapOnly> sp2(HeapOnly::GetObj());
+
+	//HeapOnly copy(*sp1);
+
+
 	return 0;
 }
+//class StackOnly
+//{
+//public:
+//	static StackOnly GetObj()
+//	{
+//		return StackOnly();
+//	}
+//private:
+//	StackOnly()
+//	{}
+//};
 
-int main() 
+// 这种方案存在一定程序缺陷，无法阻止在数据段(静态区)创建对象
+class StackOnly
 {
-	vector<vector<char> > map(10, vector<char>(10)); 
-	while (cin >> map[0][0]) //由多个测试用例，需要全部读取
-	{
-		for (int i = 0; i < 10; ++i)
-		{
-			for (int j = 0; j < 10; ++j)
-			{
-				if (i == 0 && j == 0)
-					continue;
-				cin >> map[i][j];
-			}
-		}
-		cout << bfs(map) << endl;
-	}
-	return 0; 
+public:
+	void* operator new(size_t size) = delete;
+};
+
+int x8()
+{
+	StackOnly so;
+	//StackOnly* p = new StackOnly;
+
+	static StackOnly sso;
+
+
+	return 0;
 }
