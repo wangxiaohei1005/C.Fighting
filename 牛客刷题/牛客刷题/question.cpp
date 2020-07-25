@@ -2446,38 +2446,38 @@ int main()
 
 // 创建出的类对象只能在堆上
 // 思路：正常创建对象一定要调用构造函数，或者拷贝构造
-class HeapOnly
-{
-public:
-	static HeapOnly* GetObj()
-	{
-		return new HeapOnly;
-	}
-
-private:
-	HeapOnly()
-	{}
-
-	// C++98防拷贝：声明成私有
-	//HeapOnly(const HeapOnly& );
-public:
-	// C++11 : 声明成delete
-	HeapOnly(const HeapOnly&) = delete;
-};
-
-int x7()
-{
-	//HeapOnly hp;
-	//HeapOnly* p = new HeapOnly;
-	//HeapOnly* p = HeapOnly::GetObj();
-	std::shared_ptr<HeapOnly> sp1(HeapOnly::GetObj());
-	std::shared_ptr<HeapOnly> sp2(HeapOnly::GetObj());
-
-	//HeapOnly copy(*sp1);
-
-
-	return 0;
-}
+//class HeapOnly
+//{
+//public:
+//	static HeapOnly* GetObj()
+//	{
+//		return new HeapOnly;
+//	}
+//
+//private:
+//	HeapOnly()
+//	{}
+//
+//	// C++98防拷贝：声明成私有
+//	//HeapOnly(const HeapOnly& );
+//public:
+//	// C++11 : 声明成delete
+//	HeapOnly(const HeapOnly&) = delete;
+//};
+//
+//int x7()
+//{
+//	//HeapOnly hp;
+//	//HeapOnly* p = new HeapOnly;
+//	//HeapOnly* p = HeapOnly::GetObj();
+//	std::shared_ptr<HeapOnly> sp1(HeapOnly::GetObj());
+//	std::shared_ptr<HeapOnly> sp2(HeapOnly::GetObj());
+//
+//	//HeapOnly copy(*sp1);
+//
+//
+//	return 0;
+//}
 //class StackOnly
 //{
 //public:
@@ -2491,19 +2491,223 @@ int x7()
 //};
 
 // 这种方案存在一定程序缺陷，无法阻止在数据段(静态区)创建对象
-class StackOnly
-{
-public:
-	void* operator new(size_t size) = delete;
-};
+//class StackOnly
+//{
+//public:
+//	void* operator new(size_t size) = delete;
+//};
+//
+//int x8()
+//{
+//	StackOnly so;
+//	//StackOnly* p = new StackOnly;
+//
+//	static StackOnly sso;
+//
+//
+//	return 0;
+//}
 
-int x8()
-{
-	StackOnly so;
-	//StackOnly* p = new StackOnly;
 
-	static StackOnly sso;
+//#include <vector>
+//#include <iostearm>
+//using namespace std;
+//class Solution {
+//public:
+//	int MoreThanHalfNum_Solution(vector<int> numbers) 
+//	{
+//	int n = numbers.size();
+//	if (n == 0) return 0; 
+//	int num = numbers[0], count = 1;
+//	for (int i = 1; i < n; i++) 
+//	{ 
+//		if (numbers[i] == num) 
+//		{ 
+//			count++;
+//		}
+//		else 
+//		{ 
+//			count--; 
+//		}
+//		if (count == 0)
+//		{ 
+//			num = numbers[i]; 
+//			count = 1; 
+//		} 
+//	}// 经过上面的操作, 已经找到该数 num 了. // 下面的操作是为了确认 num 确实是出现次数超过一半.
+//	count = 0; 
+//	for (int i = 0; i < n; i++) 
+//	{ 
+//		if (numbers[i] == num) 
+//			count++;
+//	}
+//	if (count * 2 > n)
+//		return num;
+//	return 0; 
+//	}
+//};
 
 
-	return 0;
-}
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//#include <sstream> 
+//#include <algorithm> 
+//using namespace std;
+//string getFileName(string path)
+//{ 
+//	int pos = path.rfind('\\');
+//	return path.substr(pos + 1);
+//}
+//string modifyName(string name)
+//{ 
+//	if (name.size() > 16)
+//	{ 
+//		name = name.substr(name.size() - 16);
+//	}
+//	return name; 
+//}
+//struct ErrRecord
+//{ 
+//	string file; 
+//	int lineNo; 
+//	int count;
+//	ErrRecord(string file, int lineNo)
+//	{
+//		this->file = file; 
+//		this->lineNo = lineNo; 
+//		count = 1;
+//	} // 后续需要进行查找, 所以先定义好两个错误记录什么情况算相等.
+//	bool operator==(const ErrRecord & a)
+//	{ 
+//		return (file == a.file) && (lineNo == a.lineNo); 
+//	}
+//};
+//int main()
+//{
+//	string file;
+//	int lineNo;
+//	vector<ErrRecord> myvec;
+//	while (cin >> file >> lineNo)
+//	{
+//		ErrRecord record(getFileName(file), lineNo);
+//		auto res = find(myvec.begin(), myvec.end(), record);
+//		if (res == myvec.end())
+//		{
+//			myvec.push_back(record);
+//		}
+//		else
+//		{
+//			res->count++;
+//		}
+//	}
+//	int count = 0;
+//	for (auto item : myvec)
+//	{
+//		if (count + 8 >= myvec.size())
+//		{
+//			cout << modifyName(item.file) << " " << item.lineNo << " " << item.count << endl;
+//		}
+//		count++;
+//	}
+//	return 0;
+//}
+
+//int x1()
+//{
+//	int* p1 = new int;
+//	int* p2 = p1;
+//
+//	//bit::auto_ptr<int> ap1(new int);
+//	//bit::auto_ptr<int> ap2 = ap1;
+//	// *ap1 = 1; 悬空崩溃
+//
+//	//bit::unique_ptr<int> up1(new int);
+//	//bit::unique_ptr<int> up2(up1);
+//
+//	bit::shared_ptr<int> sp1(new int);
+//	bit::shared_ptr<int> sp2(sp1);
+//
+//	bit::shared_ptr<int> sp3(new int);
+//	bit::shared_ptr<int> sp4(sp3);
+//	bit::shared_ptr<int> sp5(sp3);
+//
+//	sp1 = sp4;
+//
+//
+//	return 0;
+//}
+//
+//#include<thread>
+//
+//int x2()
+//{
+//	bit::shared_ptr<int> sp(new int);
+//	cout << sp.use_count() << endl;
+//	int n = 10000;
+//
+//	std::thread t1([&](){
+//		for (int i = 0; i < n; ++i)
+//		{
+//			bit::shared_ptr<int> sp1(sp);
+//		}
+//	});
+//
+//	std::thread t2([&](){
+//		for (int i = 0; i < n; ++i)
+//		{
+//			bit::shared_ptr<int> sp2(sp);
+//		}
+//	});
+//
+//	t1.join();
+//	t2.join();
+//
+//	cout << sp.use_count() << endl;
+//
+//	return 0;
+//}
+//
+//struct ListNode
+//{
+//	int val;
+//	//ListNode* _next;
+//	//ListNode* _prev;
+//	//bit::shared_ptr<ListNode> _spnext;
+//	//bit::shared_ptr<ListNode> _spprev;
+//
+//	bit::weak_ptr<ListNode> _spnext;
+//	bit::weak_ptr<ListNode> _spprev;
+//
+//	~ListNode()
+//	{
+//		cout << "~ListNode()" << endl;
+//	}
+//};
+//
+//int x3()
+//{
+//	/*ListNode* n1 = new ListNode;
+//	ListNode* n2 = new ListNode;
+//
+//	n1->_next = n2;
+//	n2->_prev = n1;
+//
+//	delete n1;
+//	delete n2;*/
+//
+//	bit::shared_ptr<ListNode> spn1(new ListNode);
+//	bit::shared_ptr<ListNode> spn2(new ListNode);
+//
+//	cout << spn1.use_count() << endl;
+//	cout << spn2.use_count() << endl;
+//
+//	// 循环引用
+//	spn1->_spnext = spn2; // 解决方式：使用weak_ptr，不增加引用计数
+//	spn2->_spprev = spn1;
+//
+//	cout << spn1.use_count() << endl;
+//	cout << spn2.use_count() << endl;
+//
+//	return 0;
+//}
