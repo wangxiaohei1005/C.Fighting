@@ -2746,137 +2746,277 @@ int main()
 //};
 
 // 问题本身不复杂, 将思路考虑周全即可. 
-#include <vector>
-using namespace std;
-class Printer 
-{ 
-public: 
-	vector<int> clockwisePrint(vector<vector<int> > mat, int n, int m) 
-	{ vector<int> ret; int x1 = 0, y1 = 0; //左上角坐标 
-	int x2 = n-1, y2 = m-1;
-	//右下角坐标 
-	// 这两个坐标表示了一个矩形(最开始的矩阵) 
-	// 然后按照要求打印最外圈的数据. 
-	// 打印完毕之后, 缩小矩形的大小. 
-	while(x1 <= x2 && y1 <= y2)
-	{ 
-		for(int j = y1; j <= y2; ++j) 
-			ret.push_back(mat[x1][j]); 
-		for(int i = x1+1; i < x2; ++i) 
-			ret.push_back(mat[i][y2]);
-		for(int j = y2; x1 < x2 && j >= y1; --j) 
-			//x1 < x2：只有在不是单一的横行时才执行这个循环 
-			ret.push_back(mat[x2][j]); 
-		for(int i = x2-1; y1 < y2 && i > x1; --i)
-			//y1 < y2：只有在不是单一的竖列时才执行这个循环 
-			ret.push_back(mat[i][y1]);
-		x1++; 
-		y1++;
-		x2--;
-		y2--;
-	}
-	return ret;
-	}
-};
+//#include <vector>
+//using namespace std;
+//class Printer 
+//{ 
+//public: 
+//	vector<int> clockwisePrint(vector<vector<int> > mat, int n, int m) 
+//	{ vector<int> ret; int x1 = 0, y1 = 0; //左上角坐标 
+//	int x2 = n-1, y2 = m-1;
+//	//右下角坐标 
+//	// 这两个坐标表示了一个矩形(最开始的矩阵) 
+//	// 然后按照要求打印最外圈的数据. 
+//	// 打印完毕之后, 缩小矩形的大小. 
+//	while(x1 <= x2 && y1 <= y2)
+//	{ 
+//		for(int j = y1; j <= y2; ++j) 
+//			ret.push_back(mat[x1][j]); 
+//		for(int i = x1+1; i < x2; ++i) 
+//			ret.push_back(mat[i][y2]);
+//		for(int j = y2; x1 < x2 && j >= y1; --j) 
+//			//x1 < x2：只有在不是单一的横行时才执行这个循环 
+//			ret.push_back(mat[x2][j]); 
+//		for(int i = x2-1; y1 < y2 && i > x1; --i)
+//			//y1 < y2：只有在不是单一的竖列时才执行这个循环 
+//			ret.push_back(mat[i][y1]);
+//		x1++; 
+//		y1++;
+//		x2--;
+//		y2--;
+//	}
+//	return ret;
+//	}
+//};
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <unistd.h>
+//#include <sys/socket.h>
+//#include <arpa/inet.h>
+//#include <netinet/in.h>
+//#include <fcntl.h>
+//
+//#include "coroutine.h"
+//
+//int tcp_init() {
+//	int lfd = socket(AF_INET, SOCK_STREAM, 0);
+//	if ( lfd == -1 ) perror("socket"),exit(1);
+//
+//	int op = 1;
+//	setsockopt(lfd, SOL_SOCKET, SO_REUSEADDR, &op, sizeof(op));
+//	
+//	struct sockaddr_in addr;
+//	addr.sin_family = AF_INET;
+//	addr.sin_port = htons(9898);
+//	addr.sin_addr.s_addr = htonl(INADDR_ANY);
+//	int r = bind(lfd, (struct sockaddr*)&addr, sizeof(addr));
+//	if ( r == -1 ) perror("bind"),exit(1);
+//	
+//	listen(lfd, SOMAXCONN);
+//
+//	return lfd;
+//}
+//
+//void set_nonblock(int fd) {
+//	int flgs = fcntl(fd, F_GETFL, 0);
+//	flgs |= O_NONBLOCK;
+//	fcntl(fd, F_SETFL, flgs);
+//}
+//
+//void accept_conn(int lfd, schedule_t *s, int co_ids[], void *(*call_back)(schedule_t *s, void *args) ) {
+//	while ( 1 ) {
+//		int cfd = accept(lfd, NULL, NULL);
+//		if ( cfd > 0 ) {
+//			set_nonblock(cfd);
+//			int args[] = {lfd, cfd};
+//			int id = coroutine_create(s, call_back, args);
+//			int i;
+//			for (i=0; i<CORSZ; i++) {
+//				if ( co_ids[i] == -1 )  {
+//					co_ids[i] = id;
+//					break;
+//				}
+//			}
+//			if ( i == CORSZ ) {
+//				printf("连接太多\n");
+//			}
+//			coroutine_running(s, id);
+//		} else {
+//			int i;
+//			for (i=0; i<CORSZ; i++) {
+//				int cid = co_ids[i];
+//				if ( cid == -1 ) continue;
+//				coroutine_resume(s, cid);
+//			}	
+//		}
+//	}
+//}
+//
+//void *handle(schedule_t *s, void *args) {
+//	int *arr = (int*)args;
+//	int cfd = arr[1];
+//
+//	char buf[1024] = {};
+//	while ( 1 ) {
+//		memset(buf, 0x00, sizeof(buf));
+//		int r = read(cfd, buf, 1024);
+//		if ( r == -1 )  {
+//			coroutine_yield(s);
+//		} else if ( r == 0 ) {
+//			break;
+//		} else {
+//			printf("recv:%s\n", buf);
+//			if ( strncasecmp(buf, "exit", 4) == 0 ) {
+//				break;
+//			}
+//			write(cfd, buf, r);
+//		}
+//	}
+//}
+//
+//int main( void ) {
+//	int lfd = tcp_init();
+//	set_nonblock(lfd);
+//
+//	schedule_t *s = schedule_create();
+//	int co_ids[CORSZ];
+//	int i;
+//	for (i=0; i<CORSZ; i++)
+//		co_ids[i] = -1;
+//
+//	accept_conn(lfd, s, co_ids, handle);
+//	
+//	schedule_destroy(s);
+//}
+
+//全排列算法！！！
+//双向/随机都可以
+
+//#include <iostream>
+//#include <vector>
+//#include <string>
+//#include <algorithm>
+//#include <functional>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	vector<int> v = { 5, 1, 2, 3, 7, 6 };
+//	sort(v.begin(), v.end());
+//	
+//	do
+//	{
+//		for (auto e : v)
+//			cout << e << " ";
+//		cout << endl;
+//
+//	} while (next_permutation(v.begin(), v.end()));
+//	//next要求为升序   prev要求为降序
+//
+//	sort(v.begin(), v.end(), greater<int>());
+//
+//	do
+//	{
+//		for (auto e : v)
+//			cout << e << " ";
+//		cout << endl;
+//
+//	} while (next_permutation(v.begin(), v.end()));
+//	return 0;
+//}
+
+//指针和数组笔试题解析
+//一维数组
+
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <fcntl.h>
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	//一维数组
+	//int a[] = { 1, 2, 3, 4 };
+	//printf("%d\n", sizeof(a));
+	//printf("%d\n", sizeof(a + 0));
+	//printf("%d\n", sizeof(*a));
+	//printf("%d\n", sizeof(a + 1));
+	//printf("%d\n", sizeof(a[1]));
+	//printf("%d\n", sizeof(&a));
+	//printf("%d\n", sizeof(*&a));
+	//printf("%d\n", sizeof(&a + 1));
+	//printf("%d\n", sizeof(&a[0]));
+	//printf("%d\n", sizeof(&a[0] + 1));
 
-#include "coroutine.h"
+	cout << endl;
+	cout << endl;
+	//字符数组
+	char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
+	printf("%d\n", sizeof(arr));
+	printf("%d\n", sizeof(arr + 0));
+	printf("%d\n", sizeof(*arr));
+	printf("%d\n", sizeof(arr[1]));
+	printf("%d\n", sizeof(&arr));
+	printf("%d\n", sizeof(&arr + 1));
+	printf("%d\n", sizeof(&arr[0] + 1));
+	cout << endl;
+	cout << endl;
 
-int tcp_init() {
-	int lfd = socket(AF_INET, SOCK_STREAM, 0);
-	if ( lfd == -1 ) perror("socket"),exit(1);
+	printf("%d\n", strlen(arr));
+	printf("%d\n", strlen(arr + 0));
+	/*printf("%d\n", strlen(*arr));报错
+	printf("%d\n", strlen(arr[1]));报错
+	printf("%d\n", strlen(&arr));报错
+	printf("%d\n", strlen(&arr + 1));报错
+	printf("%d\n", strlen(&arr[0] + 1));编译不通过*/
+	cout << endl;
+	cout << endl;
 
-	int op = 1;
-	setsockopt(lfd, SOL_SOCKET, SO_REUSEADDR, &op, sizeof(op));
-	
-	struct sockaddr_in addr;
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(9898);
-	addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	int r = bind(lfd, (struct sockaddr*)&addr, sizeof(addr));
-	if ( r == -1 ) perror("bind"),exit(1);
-	
-	listen(lfd, SOMAXCONN);
+	/*char arr[] = "abcdef";
+	printf("%d\n", sizeof(arr));
+	printf("%d\n", sizeof(arr + 0));
+	printf("%d\n", sizeof(*arr));
+	printf("%d\n", sizeof(arr[1]));
+	printf("%d\n", sizeof(&arr));
+	printf("%d\n", sizeof(&arr + 1));
+	printf("%d\n", sizeof(&arr[0] + 1));
+	cout << endl;
+	cout << endl;*/
 
-	return lfd;
-}
+	printf("%d\n", strlen(arr));
+	printf("%d\n", strlen(arr + 0));
+	//printf("%d\n", strlen(*arr));报错
+	//printf("%d\n", strlen(arr[1]));报错
+	//printf("%d\n", strlen(&arr));报错
+	//printf("%d\n", strlen(&arr + 1));报错
+	printf("%d\n", strlen(&arr[0] + 1));
+	cout << endl;
+	cout << endl;
 
-void set_nonblock(int fd) {
-	int flgs = fcntl(fd, F_GETFL, 0);
-	flgs |= O_NONBLOCK;
-	fcntl(fd, F_SETFL, flgs);
-}
+	char *p = "abcdef";
+	printf("%d\n", sizeof(p));
+	printf("%d\n", sizeof(p + 1));
+	printf("%d\n", sizeof(*p));
+	printf("%d\n", sizeof(p[0]));
+	printf("%d\n", sizeof(&p));
+	printf("%d\n", sizeof(&p + 1));
+	printf("%d\n", sizeof(&p[0] + 1));
 
-void accept_conn(int lfd, schedule_t *s, int co_ids[], void *(*call_back)(schedule_t *s, void *args) ) {
-	while ( 1 ) {
-		int cfd = accept(lfd, NULL, NULL);
-		if ( cfd > 0 ) {
-			set_nonblock(cfd);
-			int args[] = {lfd, cfd};
-			int id = coroutine_create(s, call_back, args);
-			int i;
-			for (i=0; i<CORSZ; i++) {
-				if ( co_ids[i] == -1 )  {
-					co_ids[i] = id;
-					break;
-				}
-			}
-			if ( i == CORSZ ) {
-				printf("连接太多\n");
-			}
-			coroutine_running(s, id);
-		} else {
-			int i;
-			for (i=0; i<CORSZ; i++) {
-				int cid = co_ids[i];
-				if ( cid == -1 ) continue;
-				coroutine_resume(s, cid);
-			}	
-		}
-	}
-}
+	printf("%d\n", strlen(p));
+	printf("%d\n", strlen(p + 1));
+	/*printf("%d\n", strlen(*p)); 报错
+	printf("%d\n", strlen(p[0])); 报错
+	printf("%d\n", strlen(&p)); 报错
+	printf("%d\n", strlen(&p + 1)); 报错
+	printf("%d\n", strlen(&p[0] + 1));*/
+	cout << endl;
+	cout << endl;
 
-void *handle(schedule_t *s, void *args) {
-	int *arr = (int*)args;
-	int cfd = arr[1];
-
-	char buf[1024] = {};
-	while ( 1 ) {
-		memset(buf, 0x00, sizeof(buf));
-		int r = read(cfd, buf, 1024);
-		if ( r == -1 )  {
-			coroutine_yield(s);
-		} else if ( r == 0 ) {
-			break;
-		} else {
-			printf("recv:%s\n", buf);
-			if ( strncasecmp(buf, "exit", 4) == 0 ) {
-				break;
-			}
-			write(cfd, buf, r);
-		}
-	}
-}
-
-int main( void ) {
-	int lfd = tcp_init();
-	set_nonblock(lfd);
-
-	schedule_t *s = schedule_create();
-	int co_ids[CORSZ];
-	int i;
-	for (i=0; i<CORSZ; i++)
-		co_ids[i] = -1;
-
-	accept_conn(lfd, s, co_ids, handle);
-	
-	schedule_destroy(s);
+	//二维数组
+	int a[3][4] = { 0 };
+	printf("%d\n", sizeof(a));
+	//printf("%d\n", sizeof(a[0][0]));
+	printf("%d\n", sizeof(a[0]));
+	printf("%d\n", sizeof(a[0] + 1));
+	//printf("%d\n", sizeof(*(a[0] + 1)));报错
+	printf("%d\n", sizeof(a + 1));
+	printf("%d\n", sizeof(*(a + 1)));
+	printf("%d\n", sizeof(&a[0] + 1));
+	printf("%d\n", sizeof(*(&a[0] + 1)));
+	printf("%d\n", sizeof(*a));
+	printf("%d\n", sizeof(a[3]));
+	return 0;
 }

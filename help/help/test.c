@@ -144,74 +144,131 @@
 //	return 0;
 //}
 
-#include "stm32f10x.h"
+//#include "stm32f10x.h"
+//
+//void LED_GPIO_Init(void) 
+//{
+//
+//	GPIO_InitTypeDef GPIO;
+//
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOF, ENABLE);
+//
+//	GPIO.GPIO_Pin  = GPIO_Pin_6;
+//
+//	GPIO.GPIO_Mode  = GPIO_Mode_Out_PP;
+//
+//	GPIO.GPIO_Speed  = GPIO_Speed_50MHz;
+//
+//	GPIO_Init(GPIOF, &GPIO);
+//
+//	GPIO_Write(GPIOF, 0XFFFF);
+//
+//}
+//
+//void delay(uint32_t counter)
+//{
+//
+//	while (counter --);
+//
+//}
+//
+//int main (void)
+//{
+//
+//	int i, b;
+//
+//	LED_GPIO_Init();
+//
+//	b  = 20000;
+//
+//	while (1) 
+//	{
+//
+//		for (i  = 0; i  < b; i ++) 
+//		{
+//
+//			GPIO_ResetBits(GPIOF, GPIO_Pin_6);
+//
+//			delay(b  - i);
+//
+//			GPIO_SetBits(GPIOF, GPIO_Pin_6);
+//
+//			delay(i);
+//
+//		}
+//
+//		for (i  = 0; i  < b; i++) ///利用循环，将次数控制并传入写入的函数中
+//		{
+//
+//			GPIO_ResetBits(GPIOF, GPIO_Pin_6);
+//
+//			delay(i);
+//
+//			GPIO_SetBits(GPIOF, GPIO_Pin_6);
+//
+//			delay(b  - i);
+//
+//		}
+//
+//		delay(100);
+//
+//	}
+//
+//}
 
-void LED_GPIO_Init(void) 
-{
 
-	GPIO_InitTypeDef GPIO;
+public class HashSearch {
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOF, ENABLE);
+	public static void main(String[] args) {
+		//“除法取余法”  
+		int hashLength = 13;
 
-	GPIO.GPIO_Pin  = GPIO_Pin_6;
+		int[] array = { 13, 29, 27, 28, 26, 30, 38 };
 
-	GPIO.GPIO_Mode  = GPIO_Mode_Out_PP;
-
-	GPIO.GPIO_Speed  = GPIO_Speed_50MHz;
-
-	GPIO_Init(GPIOF, &GPIO);
-
-	GPIO_Write(GPIOF, 0XFFFF);
-
-}
-
-void delay(uint32_t counter)
-{
-
-	while (counter --);
-
-}
-
-int main (void)
-{
-
-	int i, b;
-
-	LED_GPIO_Init();
-
-	b  = 20000;
-
-	while (1) 
-	{
-
-		for (i  = 0; i  < b; i ++) 
+		//哈希表长度  
+		int[] hash = new int[hashLength];
+		//创建hash  
+		for (int i = 0; i < array.length; i++)
 		{
-
-			GPIO_ResetBits(GPIOF, GPIO_Pin_6);
-
-			delay(b  - i);
-
-			GPIO_SetBits(GPIOF, GPIO_Pin_6);
-
-			delay(i);
-
+			insertHash(hash, hashLength, array[i]);
 		}
 
-		for (i  = 0; i  < b; i++) ///利用循环，将次数控制并传入写入的函数中
-		{
+		int result = searchHash(hash, hashLength, 29);
 
-			GPIO_ResetBits(GPIOF, GPIO_Pin_6);
+		if (result != -1)
+			System.out.println("已经在数组中找到，索引位置为：" + result);
+		else
+			System.out.println("没有此原始");
+	}
 
-			delay(i);
 
-			GPIO_SetBits(GPIOF, GPIO_Pin_6);
+	public static int searchHash(int[] hash, int hashLength, int key) {
+		// 哈希函数  
+		int hashAddress = key % hashLength;
 
-			delay(b  - i);
-
+		// 指定hashAdrress对应值存在但不是关键值，则用开放寻址法解决  
+		while (hash[hashAddress] != 0 && hash[hashAddress] != key) {
+			hashAddress = (++hashAddress) % hashLength;
 		}
 
-		delay(100);
+		// 查找到了开放单元，表示查找失败  
+		if (hash[hashAddress] == 0)
+			return -1;
+		return hashAddress;
 
 	}
 
+
+	public static void insertHash(int[] hash, int hashLength, int data) {
+	
+		int hashAddress = data % hashLength;
+
+		 
+		while (hash[hashAddress] != 0) {
+			
+			hashAddress = (++hashAddress) % hashLength;
+		}
+ 
+		hash[hashAddress] = data;
+	}
 }
