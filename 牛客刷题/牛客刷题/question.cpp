@@ -2922,101 +2922,200 @@ int main()
 //一维数组
 
 
-#include <stdio.h>
-#include <iostream>
-#include <cstring>
+//#include <stdio.h>
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//int main()
+//{
+//	//一维数组
+//	//int a[] = { 1, 2, 3, 4 };
+//	//printf("%d\n", sizeof(a));
+//	//printf("%d\n", sizeof(a + 0));
+//	//printf("%d\n", sizeof(*a));
+//	//printf("%d\n", sizeof(a + 1));
+//	//printf("%d\n", sizeof(a[1]));
+//	//printf("%d\n", sizeof(&a));
+//	//printf("%d\n", sizeof(*&a));
+//	//printf("%d\n", sizeof(&a + 1));
+//	//printf("%d\n", sizeof(&a[0]));
+//	//printf("%d\n", sizeof(&a[0] + 1));
+//
+//	cout << endl;
+//	cout << endl;
+//	//字符数组
+//	char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
+//	printf("%d\n", sizeof(arr));
+//	printf("%d\n", sizeof(arr + 0));
+//	printf("%d\n", sizeof(*arr));
+//	printf("%d\n", sizeof(arr[1]));
+//	printf("%d\n", sizeof(&arr));
+//	printf("%d\n", sizeof(&arr + 1));
+//	printf("%d\n", sizeof(&arr[0] + 1));
+//	cout << endl;
+//	cout << endl;
+//
+//	printf("%d\n", strlen(arr));
+//	printf("%d\n", strlen(arr + 0));
+//	/*printf("%d\n", strlen(*arr));报错
+//	printf("%d\n", strlen(arr[1]));报错
+//	printf("%d\n", strlen(&arr));报错
+//	printf("%d\n", strlen(&arr + 1));报错
+//	printf("%d\n", strlen(&arr[0] + 1));编译不通过*/
+//	cout << endl;
+//	cout << endl;
+//
+//	/*char arr[] = "abcdef";
+//	printf("%d\n", sizeof(arr));
+//	printf("%d\n", sizeof(arr + 0));
+//	printf("%d\n", sizeof(*arr));
+//	printf("%d\n", sizeof(arr[1]));
+//	printf("%d\n", sizeof(&arr));
+//	printf("%d\n", sizeof(&arr + 1));
+//	printf("%d\n", sizeof(&arr[0] + 1));
+//	cout << endl;
+//	cout << endl;*/
+//
+//	printf("%d\n", strlen(arr));
+//	printf("%d\n", strlen(arr + 0));
+//	//printf("%d\n", strlen(*arr));报错
+//	//printf("%d\n", strlen(arr[1]));报错
+//	//printf("%d\n", strlen(&arr));报错
+//	//printf("%d\n", strlen(&arr + 1));报错
+//	printf("%d\n", strlen(&arr[0] + 1));
+//	cout << endl;
+//	cout << endl;
+//
+//	char *p = "abcdef";
+//	printf("%d\n", sizeof(p));
+//	printf("%d\n", sizeof(p + 1));
+//	printf("%d\n", sizeof(*p));
+//	printf("%d\n", sizeof(p[0]));
+//	printf("%d\n", sizeof(&p));
+//	printf("%d\n", sizeof(&p + 1));
+//	printf("%d\n", sizeof(&p[0] + 1));
+//
+//	printf("%d\n", strlen(p));
+//	printf("%d\n", strlen(p + 1));
+//	/*printf("%d\n", strlen(*p)); 报错
+//	printf("%d\n", strlen(p[0])); 报错
+//	printf("%d\n", strlen(&p)); 报错
+//	printf("%d\n", strlen(&p + 1)); 报错
+//	printf("%d\n", strlen(&p[0] + 1));*/
+//	cout << endl;
+//	cout << endl;
+//
+//	//二维数组
+//	int a[3][4] = { 0 };
+//	printf("%d\n", sizeof(a));
+//	//printf("%d\n", sizeof(a[0][0]));
+//	printf("%d\n", sizeof(a[0]));
+//	printf("%d\n", sizeof(a[0] + 1));
+//	//printf("%d\n", sizeof(*(a[0] + 1)));报错
+//	printf("%d\n", sizeof(a + 1));
+//	printf("%d\n", sizeof(*(a + 1)));
+//	printf("%d\n", sizeof(&a[0] + 1));
+//	printf("%d\n", sizeof(*(&a[0] + 1)));
+//	printf("%d\n", sizeof(*a));
+//	printf("%d\n", sizeof(a[3]));
+//	return 0;
+//}
+
+//#include<iostream> 
+//#include<algorithm> 
+//#include<vector> 
+//using namespace std; 
+//int main()
+//{
+//	// IO型OJ可能会有多组测试用例，所以这里要持续接收输入多组测试用例。
+//	int n;
+//	while (cin >> n)
+//	{
+//		long long sum = 0;
+//		vector<int> a;
+//		a.resize(3 * n);
+//		for (int i = 0; i < (3 * n); i++)
+//		{
+//			cin >> a[i];
+//
+//		}/*排序，然后取下标为3n - 2，3n - 4 ，3n - 4... n+2，n位置的元素累加即可
+//
+//		 //相当下标为[0,n-1]的n个数做每组的最左边的数，剩下的2个数据两个为一组， 大的值做最右边的数，次大的做中间值，这里就是把这个次大的值加起来 */
+//		std::sort(a.begin(), a.end());
+//		for (int i = n; i <= 3 * n - 2; i += 2)
+//		{
+//			sum += a[i];
+//		}
+//		cout << sum << endl;
+//	}
+//}
+//
+//#include<iostream> 
+//#include<string> 
+//using namespace std; 
+//int main()
+//{ // 注意这里不能使用cin接收，因为cin遇到空格就结束了。 // oj中IO输入字符串最好使用getline。 
+//	string str1, str2;
+//	//cin>>str1; 
+//	//cin>>str2; 
+//	getline(cin, str1);
+//	getline(cin, str2); // 使用哈希映射思想先str2统计字符出现的次数 
+//	int hashtable[256] = { 0 };
+//	for (size_t i = 0; i < str2.size(); ++i)
+//	{
+//		hashtable[str2[i]]++;
+//	}
+//	// 遍历str1，str1[i]映射hashtable对应位置为0，则表示这个字符在
+//	// str2中没有出现过，则将他+=到ret。注意这里最好不要str1.erases(i) // 因为边遍历，边erase，容易出错。
+//	string ret;
+//	for (size_t i = 0; i < str1.size(); ++i)
+//	{
+//		if (hashtable[str1[i]] == 0)
+//
+//			ret += str1[i];
+//	}
+//	cout << ret << endl;
+//	return 0;
+//}
+
+
+#include<iostream>
+#include<vector>
 using namespace std;
-int main()
+int main() 
 {
-	//一维数组
-	//int a[] = { 1, 2, 3, 4 };
-	//printf("%d\n", sizeof(a));
-	//printf("%d\n", sizeof(a + 0));
-	//printf("%d\n", sizeof(*a));
-	//printf("%d\n", sizeof(a + 1));
-	//printf("%d\n", sizeof(a[1]));
-	//printf("%d\n", sizeof(&a));
-	//printf("%d\n", sizeof(*&a));
-	//printf("%d\n", sizeof(&a + 1));
-	//printf("%d\n", sizeof(&a[0]));
-	//printf("%d\n", sizeof(&a[0] + 1));
-
-	cout << endl;
-	cout << endl;
-	//字符数组
-	char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
-	printf("%d\n", sizeof(arr));
-	printf("%d\n", sizeof(arr + 0));
-	printf("%d\n", sizeof(*arr));
-	printf("%d\n", sizeof(arr[1]));
-	printf("%d\n", sizeof(&arr));
-	printf("%d\n", sizeof(&arr + 1));
-	printf("%d\n", sizeof(&arr[0] + 1));
-	cout << endl;
-	cout << endl;
-
-	printf("%d\n", strlen(arr));
-	printf("%d\n", strlen(arr + 0));
-	/*printf("%d\n", strlen(*arr));报错
-	printf("%d\n", strlen(arr[1]));报错
-	printf("%d\n", strlen(&arr));报错
-	printf("%d\n", strlen(&arr + 1));报错
-	printf("%d\n", strlen(&arr[0] + 1));编译不通过*/
-	cout << endl;
-	cout << endl;
-
-	/*char arr[] = "abcdef";
-	printf("%d\n", sizeof(arr));
-	printf("%d\n", sizeof(arr + 0));
-	printf("%d\n", sizeof(*arr));
-	printf("%d\n", sizeof(arr[1]));
-	printf("%d\n", sizeof(&arr));
-	printf("%d\n", sizeof(&arr + 1));
-	printf("%d\n", sizeof(&arr[0] + 1));
-	cout << endl;
-	cout << endl;*/
-
-	printf("%d\n", strlen(arr));
-	printf("%d\n", strlen(arr + 0));
-	//printf("%d\n", strlen(*arr));报错
-	//printf("%d\n", strlen(arr[1]));报错
-	//printf("%d\n", strlen(&arr));报错
-	//printf("%d\n", strlen(&arr + 1));报错
-	printf("%d\n", strlen(&arr[0] + 1));
-	cout << endl;
-	cout << endl;
-
-	char *p = "abcdef";
-	printf("%d\n", sizeof(p));
-	printf("%d\n", sizeof(p + 1));
-	printf("%d\n", sizeof(*p));
-	printf("%d\n", sizeof(p[0]));
-	printf("%d\n", sizeof(&p));
-	printf("%d\n", sizeof(&p + 1));
-	printf("%d\n", sizeof(&p[0] + 1));
-
-	printf("%d\n", strlen(p));
-	printf("%d\n", strlen(p + 1));
-	/*printf("%d\n", strlen(*p)); 报错
-	printf("%d\n", strlen(p[0])); 报错
-	printf("%d\n", strlen(&p)); 报错
-	printf("%d\n", strlen(&p + 1)); 报错
-	printf("%d\n", strlen(&p[0] + 1));*/
-	cout << endl;
-	cout << endl;
-
-	//二维数组
-	int a[3][4] = { 0 };
-	printf("%d\n", sizeof(a));
-	//printf("%d\n", sizeof(a[0][0]));
-	printf("%d\n", sizeof(a[0]));
-	printf("%d\n", sizeof(a[0] + 1));
-	//printf("%d\n", sizeof(*(a[0] + 1)));报错
-	printf("%d\n", sizeof(a + 1));
-	printf("%d\n", sizeof(*(a + 1)));
-	printf("%d\n", sizeof(&a[0] + 1));
-	printf("%d\n", sizeof(*(&a[0] + 1)));
-	printf("%d\n", sizeof(*a));
-	printf("%d\n", sizeof(a[3]));
+	int n; 
+	cin >> n; 
+	// 注意这里多给了一个值，是处理越界的情况的比较，具体参考上面的解题思路
+	vector<int> a; 
+	a.resize(n + 1); 
+	a[n] = 0; //读入数组
+	int i = 0; 
+	for (i = 0; i < n; ++i) 
+		cin >> a[i]; 
+	i = 0; 
+	int count = 0; 
+	while (i < n) 
+	{
+		// 非递减子序列
+		if (a[i] < a[i + 1])
+		{ 
+			while (i < n && a[i] <= a[i + 1])
+				i++; 
+			count++; i++; 
+		}
+		else if (a[i] == a[i + 1])
+		{ 
+			i++;
+		}
+		else // 非递增子序列
+		{ 
+			while (i < n && a[i] >= a[i + 1]) 
+				i++; 
+			count++;
+			i++; 
+		} 
+	}
+	cout << count << endl; 
 	return 0;
 }
