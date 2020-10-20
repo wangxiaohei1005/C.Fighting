@@ -347,7 +347,7 @@
 
 
 
-#include <iostream>
+/*#include <iostream>
 #include <string>
 using namespace std;
 
@@ -382,5 +382,198 @@ int main()
 		}
 	}
 	cout << count << endl;
+	return 0;
+}*/
+
+/*#include<iostream>
+#include <vector>
+using namespace std;
+
+
+int main()
+{
+	int a, b, k, v;
+	cin >> a >> b >> k >> v;
+	int box = 0;
+
+	//一个隔间放v个物体，k个隔间就是 k*v 个物体
+	//b个隔板，产生b+1个隔间（每个箱子）
+	int numK = k * v;//每个隔间
+	if (a = 0)
+		return 0;
+	while (a - numK > 0 && b)
+	{
+		box++;
+		a = (a - numK);
+		b = (b - (k - 1));
+	}
+	cout << b << endl;
+	return 0;
+}*/
+
+
+
+
+//#include<iostream>
+//
+//using namespace std;
+
+//int build(int N)//建立矩阵
+//{
+//	int tmp = 0;
+//	int n[N][N];
+//	for (int i = 0; i < N / 2; i++)
+//	{
+//		for (int j = i; j < N - 1; j++)//第一行->
+//		{
+//			++tmp;
+//			n[i][j] = tmp;
+//		}
+//		for (int j = i + 1; j < N - i - 1; ++j)//右边第一列
+//		{
+//			++tmp;
+//			n[i][N - i - 1] = tmp;
+//		}
+//		for (int j = N - i - 1; j >= i; --j)//最后一行
+//		{
+//			++tmp;
+//			n[N - i - 1][j] = tmp;
+//		}
+//		for (int j = N - i - 2; j > i; --j)//左边第一列
+//		{
+//			++tmp;
+//			n[j][i] = tmp;
+//		}
+//	}
+//	return n[N][N];
+//}
+
+
+
+//#include <iostream>
+//#include <string.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int NUM;
+//	int N, int M;
+//	int xi, int yi;
+//	cin >> NUM;
+//	if (getchar() == '\n')
+//	{
+//		cin >> N >> M;
+//	}
+//	if (getchar() == '\n')
+//	{
+//		for (int i = 0; i < M; i++)
+//		{
+//			cin >> xi >> yi;
+//			int tmp = 0;
+//			int **n = new int *[N];
+//			for (int a = 0; a < N; a++)
+//			{
+//				n[a] = new int[N];
+//				memset(n[N], 0, N * sizeof(int));
+//			}
+//			for (int i = 0; i < N / 2; i++)
+//			{
+//				for (int j = i; j < N - i; j++)//第一行->
+//				{
+//					++tmp;
+//					n[i][j] = tmp;
+//				}
+//				for (int j = i + 1; j < N - i - 1; ++j)//右边第一列
+//				{
+//					++tmp;
+//					n[i][N - i - 1] = tmp;
+//				}
+//				for (int j = N - i - 1; j >= i; --j)//最后一行
+//				{
+//					++tmp;
+//					n[N - i - 1][j] = tmp;
+//				}
+//				for (int j = N - i - 2; j > i; --j)//左边第一列
+//				{
+//					++tmp;
+//					n[j][i] = tmp;
+//				}
+//			}
+//			cout << n[xi][yi] << endl;
+//		}
+//	}
+//	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
+//#define max(a,b) a > b ? a : b
+//int main()
+//{
+//	int x = 4;
+//	int y = 2;
+//	int i = max(++x, y) + 10;
+//	cout << i << endl;
+//	return 0;
+//}
+
+/*
+#include <iostream>
+#include <cassert>
+using namespace std;
+
+const char* Strstr(const char *str1, const char *str2)
+{
+	assert(NULL != str1 && NULL != str2);
+	while (*str1 != '\0')
+	{
+		const char *p = str1;
+		const char *q = str2;
+		const char *ret = NULL;
+		if (*p == *q)
+		{
+			ret = p;
+			while (*p && *q && *p++ == *q++)
+			{
+				;
+			}
+			if (*q == '\0')
+			{
+				return ret;
+			}
+		}
+		str1++;
+	}
+	return NULL;
+}
+
+int main()
+{
+	const char *str1 = "hello";
+	const char *str2 = "ell";
+	const char *ret = Strstr(str1, str2);
+	if (ret != NULL)
+		cout << ret << endl;
+	else
+		cout << "NULL" << endl;
+	return 0;
+}*/
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	vector <int>a(10);
+	vector <int>v(10, 1);
+	vector <int>obj;
+	obj.push_back(1);
+	obj.push_back(5);
+	obj.push_back(3);
+	obj.push_back(2);
+	obj.push_back(7);
+	for (vector)
 	return 0;
 }
