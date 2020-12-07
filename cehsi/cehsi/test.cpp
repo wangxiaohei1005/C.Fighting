@@ -1,13 +1,6 @@
-#include <new>
 #include <iostream>
-//
-//template<class T>
-//T* Alloc
-//{
-//	T* tmp = new(std::nothrow) T();
-//	return tmp;
-//}
 
+using namespace std;
 
 class Test
 {
